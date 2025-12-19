@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login – MarktCheck</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="loginShell">
+    <div class="loginCard">
+      <img class="logo" src="assets/logo-sellence.png" alt="Sellence Logo">
+      <h1 class="title">MarktCheck – Login</h1>
+      <div class="sub">Bitte anmelden, um die Pflichtliste zu öffnen.</div>
+
+      <div class="field" style="margin-top:12px;text-align:left">
+        <label>Benutzername</label>
+        <input id="u" autocomplete="username" placeholder="Benutzername">
+      </div>
+
+      <div class="field" style="text-align:left">
+        <label>Passwort</label>
+        <input id="p" type="password" autocomplete="current-password" placeholder="Passwort">
+      </div>
+
+      <button class="miniBtn primary" id="btn" style="width:100%;padding:12px">Anmelden</button>
+      <div class="err" id="err">Benutzername oder Passwort ist falsch.</div>
+
+      <div class="smallLink" id="reset">Login zurücksetzen</div>
+    </div>
+  </div>
+
+<script>
+  // einfacher Client-Login (offline / Frontend-only)
+  const USER = "admin";
+  const PASS = "sellence";
+
+  const btn = document.getElementById("btn");
+  const err = document.getElementById("err");
+
+  function login(){
+    const u = document.getElementById("u").value.trim();
+    const p = document.getElementById("p").value;
+    if(u === USER && p === PASS){
+      localStorage.setItem("marktcheck.auth","1");
+      window.location.href = "marktcheck.html";
+    } else {
+      err.style.display = "block";
+    }
+  }
+
+  btn.addEventListener("click", login);
+  document.addEventListener("keydown", (e)=>{ if(e.key==="Enter") login(); });
+
+  document.getElementById("reset").addEventListener("click", ()=>{
+    localStorage.removeItem("marktcheck.auth");
+    err.style.display = "none";
+    document.getElementById("u").value = "";
+    document.getElementById("p").value = "";
+  });
+
+  if(localStorage.getItem("marktcheck.auth")==="1"){
+    window.location.href = "marktcheck.html";
+  }
+</script>
+</body>
+</html>

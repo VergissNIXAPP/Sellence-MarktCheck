@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MarktCheck</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>
+  // Zugriffsschutz (offline / Frontend-only)
+  if (localStorage.getItem("marktcheck.auth") !== "1") {
+    window.location.href = "login.html";
+  }
+</script>
+
+<div class="container">
+  <div class="header" style="position:sticky">
+    <div class="pill" id="counterPill">0 / 0</div>
+    <div class="pill" id="statusPill" style="top:46px">DA: 0 • NICHT DA: 0</div>
+    <img class="logo" src="assets/logo-sellence.png" alt="Sellence Logo">
+    <h1 class="title">MarktCheck</h1>
+    <div class="sub" id="datetime">—</div>
+  </div>
+
+  <div class="card" id="productCard" aria-live="polite">
+    <div class="card-head">
+      <b id="sectionName">—</b>
+      <span id="sectionCount">—</span>
+    </div>
+
+    <div class="product">
+      <div class="nameTop" id="name">—</div>
+
+      <div class="imgBox">
+        <div class="fallback" id="imgFallback">Kein Bild</div>
+        <img id="img" alt="" style="display:none" />
+      </div>
+
+      <div class="price" id="price">Preis: —</div>
+      <div class="content" id="content">Inhalt: —</div>
+
+      <div class="actions">
+        <button class="btn no" id="btnNo">❌ Nicht da</button>
+        <button class="btn ok" id="btnOk">✅ Da</button>
+      </div>
+
+      <div class="hint">Tasten: ← Nein · → Ja · ↓ Skip</div>
+    </div>
+  </div>
+
+  <div class="summary" id="summary">
+    <h2 style="margin:0 0 10px;font-size:18px">Ergebnis</h2>
+
+    <div class="field">
+      <label>Marktname</label>
+      <input id="marketName" placeholder="z.B. EDEKA Musterstadt" />
+    </div>
+
+    <div class="field">
+      <label>Erstellt von</label>
+      <input id="createdBy" placeholder="z.B. André Schorn" />
+    </div>
+
+    <div class="field">
+      <label>Datum & Uhrzeit</label>
+      <input id="stamp" readonly />
+    </div>
+
+    <div class="toggleRow">
+      <div>
+        <div class="tTitle">Export-Filter</div>
+        <div class="tSub">Nur „NICHT DA“ in der PDF anzeigen</div>
+      </div>
+      <input id="onlyMissing" type="checkbox" checked />
+    </div>
+
+    <div class="actions" style="margin-top:0">
+      <button class="miniBtn" id="btnBack">⬅️ Zurück</button>
+      <button class="miniBtn" id="btnReset">♻️ Reset</button>
+      <button class="miniBtn primary" id="btnPrint">🖨️ PDF</button>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <div class="tableWrap" style="margin-top:12px">
+      <table id="resultTable">
+        <thead>
+          <tr>
+            <th>Bereich</th><th>Produkt</th><th>Preis</th><th>Inhalt</th><th>Status</th><th>Aktion</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="hint" style="margin-top:10px">
+      Tipp: Du kannst im Ergebnis einzelne Produkte per Button nachträglich auf „DA“/„NICHT DA“ setzen.
+    </div>
+  </div>
+</div>
+
+<div class="footer" id="footerBar">
+  <div class="footer-inner">
+    <div class="sub" id="progressText" style="margin:0">Bereit</div>
+    <button class="miniBtn" id="btnSkip">Überspringen</button>
+  </div>
+</div>
+
+<script>
+  const data = [
+    {section:"IQOS", brand:"IQOS", name:"IQOS ILUMA Kit Pebble Beige", price:null, content:"1 Stück", img:"assets/iqos/1045460-iqos-iluma-one-pebble-beige.png"},
+    {section:"IQOS", brand:"IQOS", name:"IQOS ILUMA Kit Pebble Grey", price:null, content:"1 Stück", img:"assets/iqos/1045459-iqos-iluma-one-pebble-grey.png"},
+    {section:"IQOS", brand:"IQOS", name:"IQOS ILUMAi Kit Breeze Blue", price:null, content:"1 Stück", img:"assets/iqos/1111589-iqos-iluma-i-kit-breeze-blue-regis-neu.png"},
+    {section:"IQOS", brand:"IQOS", name:"IQOS ILUMAi ONE Kit Midnight Black", price:null, content:"1 Stück", img:"assets/iqos/1111595-iqos-iluma-i-kit-midnight-black-regis-neu.png"},
+    {section:"IQOS", brand:"IQOS", name:"IQOS ILUMAi ONE Kit Vivid Terracotta", price:null, content:"1 Stück", img:"assets/iqos/1111607-iqos-iluma-i-one-vivid-terracotta-regis-neu.png"},
+    {section:"IQOS", brand:"TEREA", name:"TEREA Amber Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108971-terea-tabaksticks-amber-pack.png"},
+    {section:"IQOS", brand:"TEREA", name:"TEREA Bronze Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108702-terea-tabaksticks-bronze-pack.png"},
+    {section:"IQOS", brand:"TEREA", name:"TEREA Russet Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108295-terea-tabaksticks-russet-pack.png"},
+    {section:"IQOS", brand:"TEREA", name:"TEREA Sienna Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108708-terea-tabaksticks-sienna-pack.png"},
+    {section:"IQOS", brand:"TEREA", name:"TEREA Silver Selection", price:7.5, content:"20 Stück", img:"assets/terea/1109372-terea-tabaksticks-silver-pack.png"},
+    {section:"IQOS", brand:"TEREA", name:"TEREA Teak Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108644-terea-tabaksticks-teak-pack.png"},
+    {section:"IQOS", brand:"TEREA", name:"TEREA Turquoise Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108701-terea-tabaksticks-turquoise-pack.png"},
+    {section:"IQOS", brand:"TEREA", name:"TEREA Warm Fuse Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108277-terea-tabaksticks-warm-fuse-pack.png"},
+    {section:"IQOS", brand:"TEREA", name:"TEREA Yellow Green Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108703-terea-tabaksticks-yellow-green-pack.png"},
+    {section:"IQOS", brand:"TEREA", name:"TEREA Yellow Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108987-terea-tabaksticks-yellow-pack.png"},
+    {section:"Tabak", brand:"Chesterfield", name:"Chesterfield Unplugged Red", price:7.2, content:"30g", img:"assets/chesterfield/1107630-chesterfield-unplugged-red-pouch-tabak.png"},
+    {section:"Tabak", brand:"Chesterfield", name:"Chesterfield Volume Tobacco Red Giga", price:49.95, content:"255g", img:"assets/chesterfield/1107630-chesterfield-unplugged-red-pouch-tabak.png"},
+    {section:"Tabak", brand:"Chesterfield", name:"Chesterfield Volume Tobacco Red M", price:9.95, content:"40g", img:"assets/chesterfield/1103183-Chesterfield-Dose-M-Tabak.png"},
+    {section:"Tabak", brand:"Chesterfield", name:"Chesterfield Volume Tobacco Red Mega", price:29.95, content:"135g", img:"assets/chesterfield/1108755-chesterfield-red-mega-box-volumentabak.png"},
+    {section:"Tabak", brand:"L&M", name:"L&M Cigarette Tobacco Red", price:7.4, content:"30g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+    {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Blue M", price:12.65, content:"39g", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
+    {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red", price:24.95, content:"85g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+    {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red Big", price:34.95, content:"129g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+    {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red L", price:19.95, content:"65g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+    {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red M", price:12.65, content:"39g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+    {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red Mega", price:49.95, content:"185g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+    {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Gold", price:7.5, content:"30g", img:"assets/marlboro_tabak/1106713-Marlboro-Gold-Tabak-Pouch.png"},
+    {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Gold M", price:19.0, content:"70g", img:"assets/marlboro_tabak/1106713-Marlboro-Gold-Tabak-Pouch.png"},
+    {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red", price:7.5, content:"30g", img:"assets/marlboro_tabak/1107585-marlboro-red-rot-premium-feinschnitt-xxl-tabak-dose.png"},
+    {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red L", price:24.95, content:"103g", img:"assets/marlboro_tabak/1107301-marlboro-rot-tabak-l-dose.png"},
+    {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red M", price:19.0, content:"70g", img:"assets/marlboro_tabak/1107585-marlboro-red-rot-premium-feinschnitt-xxl-tabak-dose.png"},
+    {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Zware", price:10.0, content:"50g", img:"assets/marlboro_tabak/1113811-marlboro-drehtabak-zware.png"},
+    {section:"Tabak", brand:"Pielroja", name:"Pielroja Rolling Tobacco", price:6.0, content:"30g", img:"assets/other/1104598-pielroja-drehtabak.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Blue Raspberry", price:9.9, content:"1 Stück", img:"assets/veev/1103688-VEEV-E-Shisha-Blue-Raspberry-seitlich.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Classic Mint", price:9.9, content:"1 Stück", img:"assets/veev/1107462-veev-now-ultra-classic-mint.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Grape", price:9.9, content:"1 Stück", img:"assets/veev/1107209-veev-e-zigarette-grape-20mg-seite.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Mango", price:9.9, content:"1 Stück", img:"assets/veev/1107210-veev-one-e-liquid-pod-mango-seite.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Passion Fruit Kiwi Guava", price:9.9, content:"1 Stück", img:"assets/veev/1107211-veev-passion-fruit-kiwi-guava-e-liquid-pod-seite.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Sour Apple", price:9.9, content:"1 Stück", img:"assets/veev/1111183-veev-e-zigarette-sour-apple-20mg-seite.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Strawberry", price:9.9, content:"1 Stück", img:"assets/veev/1103700-VEEV-E-Shisha-Strawberry-seitlich.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Watermelon", price:9.9, content:"1 Stück", img:"assets/veev/1103697-VEEV-E-Shisha-Watermelon-seitlich.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Kit Freshy Green", price:9.9, content:"1 Stück", img:"assets/veev/1112029-veev-device-freshy-green-front.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Kit Silky Grey", price:9.9, content:"1 Stück", img:"assets/veev/1103646-Veev-Device-Silky-Grey-front.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Kit Velvet Black", price:9.9, content:"1 Stück", img:"assets/veev/1103044-Veev-Device-Velvet-Black-front.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Balanced Tobacco", price:9.9, content:"2 Stück", img:"assets/veev/1107209-veev-balanced-tobacco-e-liquid-pod-seite.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Blue Mint", price:9.9, content:"2 Stück", img:"assets/veev/1103655-Veev-Pod-Blue-Mint-seitlich.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Blue Raspberry", price:9.9, content:"2 Stück", img:"assets/veev/1103658-Veev-Pod-Blue-Raspberry-seitlich.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Blueberry", price:9.9, content:"2 Stück", img:"assets/veev/1103663-Veev-Pod-Blueberry-seitlich.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Classic Tobacco", price:9.9, content:"2 Stück", img:"assets/veev/1103667-Veev-Pod-Classic-Tobacco-seitlich.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Green Mint", price:9.9, content:"2 Stück", img:"assets/veev/1111981-veev-one-e-zigarette-green-mint-18mg.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Ice Mint", price:9.9, content:"2 Stück", img:"assets/veev/1111984-veev-one-pod-e-zigarette-ice-mint-20mg.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Mango", price:9.9, content:"2 Stück", img:"assets/veev/1107210-veev-one-e-liquid-pod-mango-seite.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Peach", price:9.9, content:"2 Stück", img:"assets/veev/1103673-Veev-Pod-Peach-seitlich.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Sour Apple", price:9.9, content:"2 Stück", img:"assets/veev/1111183-veev-e-zigarette-sour-apple-20mg-seite.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Strawberry", price:9.9, content:"2 Stück", img:"assets/veev/1103677-Veev-Pod-Strawberry-seitlich.png"},
+    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Watermelon", price:9.9, content:"2 Stück", img:"assets/veev/1103680-Veev-Pod-Watermelon-seitlich.png"},
+    {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue OP 2XL-Box", price:12.0, content:"31 Stück", img:"assets/chesterfield/1113935-chesterfield-blue-zigaretten-2xl.png"},
+    {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue OP Box", price:8.6, content:"20 Stück", img:"assets/chesterfield/1110813-chesterfield-op-blue-zigaretten-einzel.png"},
+    {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue OP XL-Box", price:10.0, content:"25 Stück", img:"assets/chesterfield/1110813-chesterfield-op-blue-zigaretten-einzel.png"},
+    {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Original OP 2XL-Box", price:12.0, content:"31 Stück", img:"assets/chesterfield/1111760-chesterfield-2xl-original-zigaretten.png"},
+    {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Original OP XL-Box", price:10.0, content:"25 Stück", img:"assets/chesterfield/1111367-chesterfield-op-original-zigaretten-einzel.png"},
+    {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Original OP-Box", price:8.6, content:"20 Stück", img:"assets/chesterfield/1111367-chesterfield-op-original-zigaretten-einzel.png"},
+    {section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP 2XL-Box", price:12.0, content:"31 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
+    {section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP XL-Box", price:10.0, content:"25 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
+    {section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
+    {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 2XL-Box", price:12.0, content:"31 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
+    {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 4XL-Box", price:15.0, content:"39 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+    {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 7XL-Box", price:21.0, content:"60 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+    {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 9XL-Box", price:28.0, content:"80 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+    {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP XL-Box", price:10.0, content:"25 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+    {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Gold OP 2XL-Box", price:10.0, content:"27 Stück", img:"assets/marlboro/1112020-malboro-crafted-gold-zigaretten-2xl.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Gold OP 7XL-Box", price:20.0, content:"60 Stück", img:"assets/marlboro/1113475-malboro-gold-crafted-7xl-zigaretten-schachtel.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Gold OP-Box", price:8.0, content:"20 Stück", img:"assets/marlboro/1112018-malboro-crafted-gold-zigaretten-op.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Red OP 2XL-Box", price:10.0, content:"27 Stück", img:"assets/marlboro/1112016-malboro-crafted-red-zigaretten-2xl.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Red OP 7XL-Box", price:20.0, content:"60 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Red OP-Box", price:8.0, content:"20 Stück", img:"assets/marlboro/1112014-malboro-crafted-red-zigaretten-op.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP 2XL-Box", price:12.0, content:"29 Stück", img:"assets/marlboro/1112020-malboro-crafted-gold-zigaretten-2xl.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP 4XL-Box", price:15.0, content:"36 Stück", img:"assets/marlboro/1109662-malboro-gold-4xl-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP 7XL-Box", price:20.0, content:"52 Stück", img:"assets/marlboro/1109513-marlboro-gold-long-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP XL-Box", price:10.0, content:"23 Stück", img:"assets/marlboro/1109488-malboro-gold-zigaretten-xl.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP-Box", price:9.0, content:"20 Stück", img:"assets/marlboro/1109513-marlboro-gold-long-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold Soft Label OP Soft", price:9.0, content:"20 Stück", img:"assets/marlboro/1109513-marlboro-gold-long-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Mix OP 2XL-Box", price:12.0, content:"29 Stück", img:"assets/marlboro/1109634-malboro-mix-op-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Mix OP XL-Box", price:10.0, content:"23 Stück", img:"assets/marlboro/1109406-malboro-mix-xl-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Mix OP-Box", price:9.0, content:"20 Stück", img:"assets/marlboro/1109634-malboro-mix-op-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP 2XL-Box", price:12.0, content:"29 Stück", img:"assets/marlboro/1109783-malboro-red-2xl-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP 4XL-Box", price:15.0, content:"36 Stück", img:"assets/marlboro/1109876-malboro-red-4xl-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP 7XL-Box", price:20.0, content:"52 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP XL-Box", price:10.0, content:"23 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP-Box", price:9.0, content:"20 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red Soft Label OP Soft", price:9.0, content:"20 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+    {section:"Zigaretten", brand:"f6", name:"F6 Original OP 2XL-Box", price:12.0, content:"31 Stück", img:"assets/other/1111626-f6-zigaretten-original-2xl.png"},
+    {section:"Zigaretten", brand:"f6", name:"F6 Original OP XL-Box", price:10.0, content:"25 Stück", img:"assets/other/1109303-f6-zigaretten-original-xl.png"},
+    {section:"Zigaretten", brand:"f6", name:"F6 Original OP-Box", price:8.6, content:"20 Stück", img:"assets/other/1109946-f6-zigaretten-original.png"},
+    {section:"Zigarillos", brand:"Chesterfield", name:"Chesterfield Blue King Size Filter Cigarillos OP Box", price:3.0, content:"17 Stück", img:"assets/chesterfield/1110813-chesterfield-op-blue-zigaretten-einzel.png"},
+    {section:"Zigarillos", brand:"Chesterfield", name:"Chesterfield Red King Size Filter Cigarillos OP Box", price:3.0, content:"17 Stück", img:"assets/chesterfield/1107630-chesterfield-unplugged-red-pouch-tabak.png"},
+    {section:"Zigarillos", brand:"L&M", name:"L&M Filter Cigarillos Blue Label OP Box", price:3.0, content:"17 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
+    {section:"Zigarillos", brand:"L&M", name:"L&M Filter Cigarillos Redlabel OP Box", price:3.0, content:"17 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"}
+  ];
+
+  const KEY = "marktcheck.answers.unified.v1";
+  let answers = JSON.parse(localStorage.getItem(KEY) || "[]");
+  if(!Array.isArray(answers) || answers.length !== data.length){
+    answers = data.map(_ => ({status:null}));
+    localStorage.setItem(KEY, JSON.stringify(answers));
+  }
+  let i = 0;
+
+  const elDT = document.getElementById("datetime");
+  const elPill = document.getElementById("counterPill");
+  const elStatusPill = document.getElementById("statusPill");
+  const elProg = document.getElementById("progressText");
+
+  const elSection = document.getElementById("sectionName");
+  const elSectionCount = document.getElementById("sectionCount");
+
+  const elName = document.getElementById("name");
+  const elPrice = document.getElementById("price");
+  const elContent = document.getElementById("content");
+
+  const elImg = document.getElementById("img");
+  const elImgFallback = document.getElementById("imgFallback");
+
+  const card = document.getElementById("productCard");
+  const summary = document.getElementById("summary");
+  const footerBar = document.getElementById("footerBar");
+
+  const btnOk = document.getElementById("btnOk");
+  const btnNo = document.getElementById("btnNo");
+  const btnSkip = document.getElementById("btnSkip");
+
+  const btnBack = document.getElementById("btnBack");
+  const btnReset = document.getElementById("btnReset");
+  const btnPrint = document.getElementById("btnPrint");
+
+  const stamp = document.getElementById("stamp");
+  const onlyMissing = document.getElementById("onlyMissing");
+  const toast = document.getElementById("toast");
+  const resultTable = document.getElementById("resultTable");
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.style.display = "block";
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(()=> toast.style.display="none", 2200);
+  }
+
+  function pad(n){ return String(n).padStart(2,"0"); }
+  function formatDT(d){ return `${pad(d.getDate())}.${pad(d.getMonth()+1)}.${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`; }
+  const now = new Date();
+  elDT.textContent = formatDT(now);
+  stamp.value = formatDT(now);
+
+  function euro(x){ if(x==null) return "—"; return x.toFixed(2).replace(".",",")+" €"; }
+
+  function sectionStats(section){
+    const idx = data.map((p,idx)=>({p,idx})).filter(x=>x.p.section===section).map(x=>x.idx);
+    const done = idx.filter(k=>answers[k].status!==null).length;
+    return {done,total:idx.length};
+  }
+
+  function updateHeader(){
+    const done = answers.filter(r=>r.status!==null).length;
+    const ok = answers.filter(r=>r.status===true).length;
+    const no = answers.filter(r=>r.status===false).length;
+    elPill.textContent = `${done} / ${data.length}`;
+    if(elStatusPill) elStatusPill.textContent = `DA: ${ok} • NICHT DA: ${no}`;
+    elProg.textContent = done < data.length ? `Produkt ${i+1} von ${data.length}` : `Fertig`;
+  }
+
+  function setImage(path, alt){
+    elImg.style.display="none";
+    elImgFallback.style.display="block";
+    elImgFallback.textContent="Kein Bild";
+    elImg.removeAttribute("src");
+    if(!path) return;
+
+    const test = new Image();
+    test.onload = ()=>{
+      elImg.src = path;
+      elImg.alt = alt || "";
+      elImg.style.display = "block";
+      elImgFallback.style.display = "none";
+    };
+    test.onerror = ()=>{ elImgFallback.textContent = `Bild nicht gefunden: ${path}`; };
+    test.src = path;
+  }
+
+  function showProduct(){
+    if(i >= data.length) return showSummary();
+    const p = data[i];
+    const s = sectionStats(p.section);
+
+    elSection.textContent = p.section;
+    elSectionCount.textContent = `${p.brand} • ${s.done}/${s.total}`;
+
+    elName.textContent = p.name;
+    elPrice.textContent = `Preis: ${euro(p.price)}`;
+    elContent.textContent = `Inhalt: ${(p.content && String(p.content).trim()) ? p.content : "—"}`;
+
+    setImage(p.img, p.name);
+    updateHeader();
+  }
+
+  function mark(status){
+    answers[i].status = status;
+    localStorage.setItem(KEY, JSON.stringify(answers));
+    i++;
+    showProduct();
+  }
+
+  function fillTable(){
+    const tbody = document.querySelector("#resultTable tbody");
+    tbody.innerHTML = "";
+    const only = !!onlyMissing.checked;
+
+    data.forEach((p,idx)=>{
+      const st = answers[idx].status;
+      if(only && st !== false) return;
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${p.section}</td>
+        <td><b>${p.brand}</b><br>${p.name}</td>
+        <td>${euro(p.price)}</td>
+        <td>${(p.content && String(p.content).trim()) ? p.content : "—"}</td>
+        <td class="${st===true?'statusOk':(st===false?'statusNo':'')}">${st===true?'DA':(st===false?'NICHT DA':'OFFEN')}</td>
+        <td>
+          ${st===false ? '<button class="rowBtn ok" data-action="set-true" data-idx="'+idx+'">✅ jetzt DA</button>' : ''}
+          ${st===true ? '<button class="rowBtn no" data-action="set-false" data-idx="'+idx+'">❌ doch NICHT</button>' : ''}
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function showSummary(){
+    card.style.display="none";
+    footerBar.style.display="none";
+    summary.style.display="block";
+    fillTable();
+  }
+
+  function resetAll(){
+    answers = data.map(_ => ({status:null}));
+    localStorage.setItem(KEY, JSON.stringify(answers));
+    i = 0;
+    summary.style.display="none";
+    card.style.display="block";
+    footerBar.style.display="block";
+    showProduct();
+  }
+
+  // Export-Tabelle: Status nachträglich ändern
+  resultTable.addEventListener("click", (e)=>{
+    const btn = e.target.closest("button.rowBtn");
+    if(!btn) return;
+    const idx = Number(btn.getAttribute("data-idx"));
+    const action = btn.getAttribute("data-action");
+    if(!Number.isFinite(idx)) return;
+
+    if(action === "set-true") answers[idx].status = true;
+    if(action === "set-false") answers[idx].status = false;
+
+    localStorage.setItem(KEY, JSON.stringify(answers));
+
+    // Wenn Filter aktiv ist und du auf DA setzt, verschwindet die Zeile – wir zeigen deshalb eine kurze Meldung.
+    if(action === "set-true" && onlyMissing.checked) {
+      showToast("✅ Auf „DA“ gesetzt (durch Filter ausgeblendet).");
+    } else if(action === "set-false") {
+      showToast("❌ Auf „NICHT DA“ gesetzt.");
+    }
+
+    fillTable();
+    updateHeader();
+  });
+
+  btnOk.addEventListener("click", ()=>mark(true));
+  btnNo.addEventListener("click", ()=>mark(false));
+  btnSkip.addEventListener("click", ()=>{ i++; showProduct(); });
+
+  btnBack.addEventListener("click", ()=>{
+    summary.style.display="none";
+    card.style.display="block";
+    footerBar.style.display="block";
+    const firstOpen2 = answers.findIndex(a => a.status === null);
+    if(firstOpen2 === -1){
+      // alles beantwortet: gehe zum letzten Produkt (sonst springt man sofort wieder in die Ergebnis-Ansicht)
+      let last = -1;
+      for(let k=0;k<answers.length;k++){ if(answers[k].status !== null) last = k; }
+      i = last === -1 ? 0 : last;
+    } else {
+      i = firstOpen2;
+    }
+    updateHeader();
+    showProduct();
+  });
+
+  btnReset.addEventListener("click", resetAll);
+  onlyMissing.addEventListener("change", fillTable);
+
+  btnPrint.addEventListener("click", ()=>{
+    fillTable();
+    window.print();
+  });
+
+  window.addEventListener("keydown", (e)=>{
+    if(summary.style.display === "block") return;
+    if(e.key === "ArrowLeft") mark(false);
+    if(e.key === "ArrowRight") mark(true);
+    if(e.key === "ArrowDown"){ i++; showProduct(); }
+  });
+
+  const firstOpen = answers.findIndex(a => a.status === null);
+  i = firstOpen === -1 ? data.length : firstOpen;
+
+  updateHeader();
+  showProduct();
+</script>
+</body>
+</html>
