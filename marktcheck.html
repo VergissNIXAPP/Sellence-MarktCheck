@@ -5,27 +5,44 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MarktCheck</title>
   <link rel="stylesheet" href="style.css">
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#5b2bd1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MarktCheck">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+
 </head>
 <body>
 <script>
   // Zugriffsschutz (offline / Frontend-only)
   if (localStorage.getItem("marktcheck.auth") !== "1") {
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   }
 </script>
 
 <div class="container">
   <div class="header" style="position:sticky">
-    <div class="pill" id="counterPill">0 / 0</div>
-    <div class="pill" id="statusPill" style="top:46px">DA: 0 • NICHT DA: 0</div>
-    <img class="logo" src="assets/logo-sellence.png" alt="Sellence Logo">
-    <h1 class="title">MarktCheck</h1>
+  <div class="topRight">
+    <div class="pill pill-progress" id="counterPill">0 / 0</div>
+    <div class="pill pill-status" id="statusPill">
+      <span class="badge ok">✅ DA <b id="countOk">0</b></span>
+      <span class="badge no">❌ NICHT DA <b id="countNo">0</b></span>
+    </div>
+  </div>
+    <img class="sellenceLogo sellenceLogoLeft" src="assets/logo-sellence.png" alt="SELLENCE" />
+    <div class="titleRow">
+      <h1 class="title">MarktCheck</h1>
+    </div>
     <div class="sub" id="datetime">—</div>
   </div>
 
   <div class="card" id="productCard" aria-live="polite">
     <div class="card-head">
       <b id="sectionName">—</b>
+      <select id="jumpSelect" class="jumpSelect" aria-label="Sprung zu Kategorie"></select>
       <span id="sectionCount">—</span>
     </div>
 
@@ -103,7 +120,7 @@
 <div class="footer" id="footerBar">
   <div class="footer-inner">
     <div class="sub" id="progressText" style="margin:0">Bereit</div>
-    <button class="miniBtn" id="btnSkip">Überspringen</button>
+    <button class="miniBtn primary" id="btnSkip">Zum Export</button>
   </div>
 </div>
 
@@ -221,10 +238,13 @@
   const elDT = document.getElementById("datetime");
   const elPill = document.getElementById("counterPill");
   const elStatusPill = document.getElementById("statusPill");
+  const elCountOk = document.getElementById("countOk");
+  const elCountNo = document.getElementById("countNo");
   const elProg = document.getElementById("progressText");
 
   const elSection = document.getElementById("sectionName");
   const elSectionCount = document.getElementById("sectionCount");
+  const elJump = document.getElementById("jumpSelect");
 
   const elName = document.getElementById("name");
   const elPrice = document.getElementById("price");
@@ -239,7 +259,7 @@
 
   const btnOk = document.getElementById("btnOk");
   const btnNo = document.getElementById("btnNo");
-  const btnSkip = document.getElementById("btnSkip");
+  const btnExport = document.getElementById("btnSkip"); // Button unten rechts (UI: "Zum Export")
 
   const btnBack = document.getElementById("btnBack");
   const btnReset = document.getElementById("btnReset");
@@ -265,18 +285,82 @@
 
   function euro(x){ if(x==null) return "—"; return x.toFixed(2).replace(".",",")+" €"; }
 
-  function sectionStats(section){
-    const idx = data.map((p,idx)=>({p,idx})).filter(x=>x.p.section===section).map(x=>x.idx);
-    const done = idx.filter(k=>answers[k].status!==null).length;
-    return {done,total:idx.length};
+  // Kategorien (nur 5 Stk.)
+  function categoryOf(p){
+    if(p.section === "Zigaretten") return "Zigaretten";
+    if(p.section === "Tabak") return "Tabak";
+    if(p.section === "VEEV") return "VEEV";
+    if(p.section === "IQOS" && p.brand === "TEREA") return "TEREA";
+    if(p.section === "IQOS") return "IQOS-Geräte";
+    return p.section;
   }
 
-  function updateHeader(){
+  function categoryStats(cat){
+    const idx = [];
+    for(let k=0;k<data.length;k++){
+      if(categoryOf(data[k]) === cat) idx.push(k);
+    }
+    const done = idx.filter(k=>answers[k].status!==null).length;
+    return {done, total: idx.length};
+  }
+
+  // Sprung-Navigation (Kategorien)
+  function buildJumpOptions(){
+    if(!elJump) return;
+
+    const cats = ["Zigaretten","Tabak","TEREA","IQOS-Geräte","VEEV"];
+    elJump.innerHTML = "";
+
+    const ph = document.createElement("option");
+    ph.value = "";
+    ph.textContent = "Kategorie wählen…";
+    ph.disabled = true;
+    elJump.appendChild(ph);
+
+    cats.forEach(cat=>{
+      const st = categoryStats(cat);
+      const opt = document.createElement("option");
+      opt.value = cat;
+      opt.textContent = `${cat} (${st.done}/${st.total})`;
+      elJump.appendChild(opt);
+    });
+
+    // initialer Wert: aktuelle Kategorie
+    try { elJump.value = categoryOf(data[i]); } catch(e){ elJump.value=""; }
+  }
+
+  function jumpToCategory(cat){
+    const candidates = [];
+    for(let idx=0; idx<data.length; idx++){
+      if(categoryOf(data[idx]) === cat) candidates.push(idx);
+    }
+    if(!candidates.length) return;
+
+    const openIdx = candidates.find(idx => answers[idx].status === null);
+    i = (openIdx != null) ? openIdx : candidates[0];
+
+    if(summary.style.display === "block"){
+      summary.style.display="none";
+      card.style.display="block";
+      footerBar.style.display="block";
+    }
+    showProduct();
+  }
+
+function updateHeader(){
     const done = answers.filter(r=>r.status!==null).length;
     const ok = answers.filter(r=>r.status===true).length;
     const no = answers.filter(r=>r.status===false).length;
+
     elPill.textContent = `${done} / ${data.length}`;
-    if(elStatusPill) elStatusPill.textContent = `DA: ${ok} • NICHT DA: ${no}`;
+
+    // schöner Status oben rechts (iOS freundlich)
+    if(elCountOk) elCountOk.textContent = ok;
+    if(elCountNo) elCountNo.textContent = no;
+    if(elStatusPill && !elCountOk && !elCountNo){
+      elStatusPill.textContent = `DA: ${ok} • NICHT DA: ${no}`;
+    }
+
     elProg.textContent = done < data.length ? `Produkt ${i+1} von ${data.length}` : `Fertig`;
   }
 
@@ -301,10 +385,17 @@
   function showProduct(){
     if(i >= data.length) return showSummary();
     const p = data[i];
-    const s = sectionStats(p.section);
+    const cat = categoryOf(p);
+    const st = categoryStats(cat);
 
-    elSection.textContent = p.section;
-    elSectionCount.textContent = `${p.brand} • ${s.done}/${s.total}`;
+    elSection.textContent = cat;
+    elSectionCount.textContent = `${st.done}/${st.total}`;
+
+    // Dropdown aktuell halten (inkl. Fortschritt in den Labels)
+    if(elJump){
+      buildJumpOptions();
+      elJump.value = cat;
+    }
 
     elName.textContent = p.name;
     elPrice.textContent = `Preis: ${euro(p.price)}`;
@@ -389,7 +480,15 @@
 
   btnOk.addEventListener("click", ()=>mark(true));
   btnNo.addEventListener("click", ()=>mark(false));
-  btnSkip.addEventListener("click", ()=>{ i++; showProduct(); });
+  if(elJump){
+    elJump.addEventListener("change", ()=>{
+      const cat = String(elJump.value || "");
+      if(!cat) return;
+      jumpToCategory(cat);
+    });
+  }
+  // Unten rechts: jederzeit in die Export-Ansicht springen (auch wenn noch nicht alles beantwortet ist)
+  btnExport.addEventListener("click", ()=>{ showSummary(); });
 
   btnBack.addEventListener("click", ()=>{
     summary.style.display="none";
@@ -426,8 +525,18 @@
   const firstOpen = answers.findIndex(a => a.status === null);
   i = firstOpen === -1 ? data.length : firstOpen;
 
+  buildJumpOptions();
   updateHeader();
   showProduct();
 </script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js").catch(()=>{});
+    });
+  }
+</script>
+
 </body>
 </html>

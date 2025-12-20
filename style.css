@@ -25,27 +25,71 @@ a{color:inherit}
 .container{
   max-width:540px;
   margin:0 auto;
-  padding:14px 14px 92px;
+  padding:14px 14px calc(92px + env(safe-area-inset-bottom));
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
 }
 
 .header{
   position:sticky;
-  top:10px;
+  top:calc(8px + env(safe-area-inset-top));
   z-index:10;
   border:1px solid var(--line);
   background:var(--panel);
   backdrop-filter:blur(8px);
   border-radius:18px;
   padding:14px 12px 12px;
+  position:relative;
   text-align:center;
+  overflow:hidden;
 }
 
-.logo{
-  display:block;
-  width:190px;
-  max-width:100%;
-  margin:0 auto 8px;
-  height:auto;
+/* optionales Brand-Watermark (wir nutzen stattdessen das Logo links oben)
+   -> damit nichts doppelt wirkt.
+*/
+.header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:none;
+  opacity:0;
+  pointer-events:none;
+}
+
+.header > *{position:relative; z-index:1;}
+
+
+.titleRow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.sellenceLogo{
+  height:18px;
+  width:auto;
+  max-width:min(42vw, 170px);
+  opacity:.55;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.25));
+}
+
+.sellenceLogoLeft{
+  position:absolute;
+  left:12px;
+  top:12px;
+  height:42px;
+  width:auto;
+  max-width:42vw;
+  opacity:.28;
+  pointer-events:none;
+  /* dezenter Glow wie im Screenshot */
+  filter:
+    drop-shadow(0 0 10px rgba(122,60,255,.55))
+    drop-shadow(0 0 28px rgba(91,43,209,.25))
+    drop-shadow(0 10px 24px rgba(0,0,0,.35));
+  mix-blend-mode:screen;
 }
 
 .title{
@@ -62,24 +106,65 @@ a{color:inherit}
 }
 
 .pill{
-  position:absolute;
-  right:16px;
-  top:16px;
   font-size:12px;
   color:#dbe7ff;
   background:rgba(91,43,209,.18);
   border:1px solid rgba(91,43,209,.35);
   padding:6px 10px;
   border-radius:999px;
+  white-space:nowrap;
 }
 
+.topRight{
+  position:relative;
+  right:auto;
+  top:auto;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:0 0 6px;
+}
+
+@media (max-width:420px){
+  .topRight{justify-content:center}
+}
+
+.pill-status{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  padding:6px 8px;
+  background:rgba(0,0,0,.16);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+}
+
+.badge{
+  display:inline-flex;
+  gap:6px;
+  align-items:center;
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.18);
+  font-weight:800;
+}
+.badge b{font-weight:1000}
+.badge.ok{border-color:rgba(34,197,94,.28); background:rgba(34,197,94,.10)}
+.badge.no{border-color:rgba(239,68,68,.28); background:rgba(239,68,68,.10)}
+
 .card{
-  margin-top:14px;
   border:1px solid var(--line);
   background:var(--panel);
   border-radius:20px;
   overflow:hidden;
   box-shadow:0 18px 50px rgba(0,0,0,.35);
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-height:0;
 }
 
 .card-head{
@@ -92,16 +177,33 @@ a{color:inherit}
   align-items:center;
 }
 
+.jumpSelect{
+  appearance:none;
+  -webkit-appearance:none;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.16);
+  color:#eaf0ff;
+  padding:6px 10px;
+  font-size:12px;
+  font-weight:800;
+  max-width:52vw;
+}
+
+.jumpSelect:focus{outline:2px solid rgba(91,43,209,.55); outline-offset:2px;}
+
 .card-head b{font-size:13px}
 .card-head span{font-size:12px;color:var(--muted)}
 
 .product{
   padding:14px;
-  display:flex;
-  flex-direction:column;
+  display:grid;
+  grid-template-rows:auto minmax(170px, 1fr) auto auto auto auto;
   gap:10px;
   align-items:center;
   text-align:center;
+  flex:1;
+  min-height:0;
 }
 
 .nameTop{
@@ -112,21 +214,27 @@ a{color:inherit}
 }
 
 .imgBox{
-  width:min(340px,100%);
-  aspect-ratio:1/1;
+  width:min(340px,96%);
+  margin:4px auto 0;
   border-radius:18px;
-  border:1px solid var(--line);
-  background:#0b0f14;
+  border:none;
+  /* helles Panel, damit keine dunklen "Balken" links/rechts durchscheinen */
+  background:rgba(255,255,255,.94);
   overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
+  padding:0;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
 }
 
 .imgBox img{
   width:100%;
-  height:100%;
+  height:auto;
+  max-width:100%;
+  max-height:40vh;
   object-fit:contain;
+  display:block;
 }
 
 .fallback{
@@ -340,4 +448,24 @@ tr:last-child td{border-bottom:0}
   color:var(--muted);
   text-decoration:underline;
   cursor:pointer;
+}
+
+
+/* iOS Safe-Area (Notch / Home Indicator) */
+.header{padding-top: calc(14px + env(safe-area-inset-top));}
+.footer{padding-bottom: calc(10px + env(safe-area-inset-bottom));}
+
+@media (max-height: 720px){
+  .logo{display:none}
+  .header{padding:10px 12px}
+  .nameTop{font-size:17px}
+  .imgBox{max-height:34vh}
+  .btn{padding:12px;font-size:15px}
+  .hint{display:none}
+}
+
+@media (max-width: 430px){
+  .topRight{right:10px; top:10px}
+  .pill{font-size:11px; padding:5px 8px}
+  .badge{padding:3px 7px}
 }

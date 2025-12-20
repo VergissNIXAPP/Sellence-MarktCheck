@@ -3,13 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Login – MarktCheck</title>
+  <title>MarktCheck</title>
   <link rel="stylesheet" href="style.css">
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#5b2bd1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MarktCheck">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+
 </head>
 <body>
   <div class="loginShell">
     <div class="loginCard">
-      <img class="logo" src="assets/logo-sellence.png" alt="Sellence Logo">
+      <img class="logo" src="assets/logo-marktcheck.png" alt="Sellence Logo">
       <h1 class="title">MarktCheck – Login</h1>
       <div class="sub">Bitte anmelden, um die Pflichtliste zu öffnen.</div>
 
@@ -63,5 +72,14 @@
     window.location.href = "marktcheck.html";
   }
 </script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js").catch(()=>{});
+    });
+  }
+</script>
+
 </body>
 </html>

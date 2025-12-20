@@ -1,4 +1,4 @@
-const CACHE_NAME = "marktcheck-v1";
+const CACHE_NAME = "marktcheck-v5";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -6,6 +6,7 @@ const APP_SHELL = [
   "./style.css",
   "./manifest.webmanifest",
   "./assets/logo-marktcheck.png",
+  "./assets/logo-sellence.png",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
   "./assets/icons/apple-touch-icon.png",
