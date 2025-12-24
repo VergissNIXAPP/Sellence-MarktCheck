@@ -290,11 +290,13 @@ a{color:inherit}
 .footer{
   position:fixed;
   left:0; right:0; bottom:0;
-  background:rgba(10,14,20,.90);
+  background:rgba(10,14,20,.88);
   border-top:1px solid var(--line);
   backdrop-filter:blur(10px);
-  padding:10px 14px;
+  padding:6px 12px;
+  padding-bottom: calc(6px + env(safe-area-inset-bottom));
 }
+
 
 .footer-inner{
   max-width:540px;
@@ -302,20 +304,22 @@ a{color:inherit}
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
+  gap:8px;
 }
+
 
 .miniBtn{
   appearance:none;
   border:1px solid var(--line);
   background:rgba(255,255,255,.06);
   color:var(--text);
-  border-radius:12px;
-  padding:10px 12px;
-  font-size:13px;
-  font-weight:900;
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:12px;
+  font-weight:800;
   cursor:pointer;
 }
+
 
 .miniBtn.primary{
   background:rgba(91,43,209,.20);
@@ -468,4 +472,34 @@ tr:last-child td{border-bottom:0}
   .topRight{right:10px; top:10px}
   .pill{font-size:11px; padding:5px 8px}
   .badge{padding:3px 7px}
+}
+
+
+/* ===== iPhone/iPad Web-App Optimierung ===== */
+html, body{
+  height:100%;
+  overscroll-behavior: none;
+}
+
+body{
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Kein "Rubber band" Scroll auf iOS, ohne Inhalte zu killen */
+.container{
+  min-height:100dvh;
+}
+
+/* iPad: etwas mehr Luft, aber weiterhin kompakt */
+@media (min-width: 768px){
+  .container{max-width:720px}
+  .imgBox{width:min(420px, 92%)}
+  .title{font-size:20px}
+}
+
+/* Sehr kleine Höhen: Footer noch kompakter */
+@media (max-height: 640px){
+  .footer{padding:5px 10px; padding-bottom: calc(5px + env(safe-area-inset-bottom));}
+  .miniBtn{padding:7px 9px}
 }

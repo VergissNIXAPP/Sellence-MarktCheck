@@ -5,6 +5,7 @@ const APP_SHELL = [
   "./marktcheck.html",
   "./style.css",
   "./manifest.webmanifest",
+  "./assets/logo-marktcheck.png",
   "./assets/logo-sellence.png",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
