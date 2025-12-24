@@ -25,12 +25,6 @@
 
 <div class="container">
   <div class="header" style="position:sticky">
-  <div class="topRight">
-    <div class="pill pill-status" id="statusPill">
-      <span class="badge ok">✅ DA <b id="countOk">0</b></span>
-      <span class="badge no">❌ NICHT DA <b id="countNo">0</b></span>
-    </div>
-  </div>
 <div class="titleRow">
       <h1 class="title">MarktCheck</h1>
     </div>
@@ -118,6 +112,10 @@
 <div class="footer" id="footerBar">
   <div class="footer-inner">
     <div class="sub" id="progressText" style="margin:0">Bereit</div>
+    <div class="pill pill-status" id="footerStatusPill" style="margin:0;justify-content:center">
+      <span class="badge ok">✅ DA <b id="countOk">0</b></span>
+      <span class="badge no">❌ NICHT DA <b id="countNo">0</b></span>
+    </div>
     <button class="miniBtn primary" id="btnSkip">Zum Export</button>
   </div>
 </div>
@@ -234,7 +232,6 @@
   let i = 0;
 
   const elDT = document.getElementById("datetime");
-  const elPill = document.getElementById("counterPill");
   const elStatusPill = document.getElementById("statusPill");
   const elCountOk = document.getElementById("countOk");
   const elCountNo = document.getElementById("countNo");
@@ -350,16 +347,21 @@ function updateHeader(){
     const ok = answers.filter(r=>r.status===true).length;
     const no = answers.filter(r=>r.status===false).length;
 
-    elPill.textContent = `${done} / ${data.length}`;
-
-    // schöner Status oben rechts (iOS freundlich)
+    // Status oben rechts (DA / NICHT DA)
     if(elCountOk) elCountOk.textContent = ok;
     if(elCountNo) elCountNo.textContent = no;
     if(elStatusPill && !elCountOk && !elCountNo){
       elStatusPill.textContent = `DA: ${ok} • NICHT DA: ${no}`;
     }
 
-    elProg.textContent = done < data.length ? `Produkt ${i+1} von ${data.length}` : `Fertig`;
+    // Fortschritt unten in der Footer-Bar (statt im Titel)
+    if(elProg){
+      if(done < data.length){
+        elProg.textContent = `Fortschritt ${done}/${data.length}`;
+      } else {
+        elProg.textContent = `Fertig · ${data.length}/${data.length}`;
+      }
+    }
   }
 
   function setImage(path, alt){
