@@ -619,3 +619,103 @@ body { overflow: hidden; }
   flex: 0 0 auto;
 }
 
+/* ==========================
+   FIX: Packshot over text (iPhone/iPad)
+   - keep name/price always visible
+   - limit image box height responsively
+   ========================== */
+.product{
+  /* image row should size to its content, not steal remaining space */
+  grid-template-rows:
+    auto      /* name */
+    auto      /* image */
+    auto      /* price */
+    auto      /* content */
+    auto      /* actions */
+    auto;     /* spacing / misc */
+}
+
+/* Limit image container so it never pushes into text */
+.imgBox{
+  /* responsive cap: min 200px, ideal 32vh, max 340px */
+  max-height: clamp(240px, 44vh, 560px);
+}
+
+/* Keep the packshot inside the box */
+.imgBox img{
+  /* Fit tall packshots fully (no cropping) */
+  width:auto;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+/* ==========================
+   FIX: Export/Ergebnis scroll (iPhone WebApp + iPad)
+   ========================== */
+html, body{
+  height:auto;
+  min-height:100%;
+}
+
+body{
+  overflow-x:hidden;
+  overflow-y:auto;                 /* allow scrolling */
+  -webkit-overflow-scrolling:touch;
+}
+
+/* container must not lock scroll */
+.container{
+  height:auto;
+  min-height:100dvh;
+}
+
+/* when summary (export) is visible, allow the page to scroll naturally */
+.summary{
+  max-height:unset;
+}
+
+/* keep result table comfortable on iPhone/iPad */
+.tableWrap{
+  max-height: clamp(320px, 55vh, 520px);
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+/* ==========================
+   Device tuning: iPhone 16 / iPad Pro 11
+   ========================== */
+
+/* Very tall phones: give the image a bit more room but still capped */
+@media (min-height: 820px) and (max-width: 480px){
+  .imgBox{ max-height: clamp(260px, 46vh, 620px); }
+}
+
+/* iPad: slightly larger layout and table area */
+@media (min-width: 768px){
+  .container{
+    max-width: 720px;
+    padding-left:18px;
+    padding-right:18px;
+  }
+  .title .brandLine{ font-size:24px; }
+  .nameTop{ font-size:20px; }
+  .tableWrap{ max-height: clamp(420px, 62vh, 760px); }
+}
+
+/* Prevent accidental zoom / focus scroll glitches in PWA */
+input, select, button{
+  font-size: max(16px, 1rem);
+}
+
+/* iOS safe-area: ensure content never hides behind bottom bar */
+.container{
+  padding-bottom: calc(110px + env(safe-area-inset-bottom));
+}
+
+/* SELLENCE title */
+.sellenceTitle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;line-height:1.05;margin:0}
+.sellenceBrand{font-family:var(--logoFont,"Montserrat","Plus Jakarta Sans",sans-serif);font-weight:900;font-size:24px;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(180deg,#7a3cff,#5b2bd1);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 10px 24px rgba(0,0,0,.45)}
+.sellenceSub{font-family:var(--logoFont,"Montserrat","Plus Jakarta Sans",sans-serif);font-weight:700;font-size:13px;letter-spacing:.08em;color:#7a3cff}
+@media (min-width:768px){.sellenceBrand{font-size:28px}.sellenceSub{font-size:14px}}
