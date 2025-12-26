@@ -751,3 +751,16 @@ input, select, button{
   flex:0 0 auto;
   white-space:nowrap;
 }
+
+/* ==========================
+   FIX: Footer Status mittig zentrieren
+   ========================== */
+.footer-inner{
+  justify-content:space-between;
+}
+
+#footerStatusPill{
+  margin:0 auto;              /* echtes Zentrieren */
+  justify-content:center;
+  text-align:center;
+}
