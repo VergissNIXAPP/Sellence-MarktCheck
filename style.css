@@ -797,27 +797,30 @@ input, select, button{
 
 
 /* =========================
-   IMAGE NORMALIZATION FIX
+   IMAGE NORMALIZATION FIX v2
    ========================= */
 
-/* Image container: same visual height for all packshots */
+/* Image container */
 .imgBox{
   max-height: clamp(220px, 38vh, 420px);
-  padding: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Always show full image, never crop */
+/* Balanced scaling for wide + tall packshots */
 .imgBox img{
-  width: auto;
-  height: 100%;
-  max-width: 100%;
+  max-width: 92%;
   max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
 }
 
 /* Mobile fine tuning */
 @media (max-width: 480px){
-  .imgBox{
-    max-height: clamp(200px, 34vh, 360px);
+  .imgBox img{
+    max-width: 88%;
   }
 }
