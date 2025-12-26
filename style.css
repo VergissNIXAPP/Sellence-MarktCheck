@@ -780,13 +780,16 @@ input, select, button{
 }
 
 /* ==========================
-   Premium Kategorie-Farbe (SELLENCE Gradient)
+   Kategorien: Soft Dark White (Premium ruhig)
    ========================== */
-.card-head b,
-.card-head span,
+.card-head b{
+  color: rgba(235,240,255,0.95);
+}
+
+.card-head span{
+  color: rgba(235,240,255,0.75);
+}
+
 .jumpSelect{
-  background: linear-gradient(180deg, #7a3cff, #5b2bd1);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+  color: rgba(235,240,255,0.9);
 }
