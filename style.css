@@ -764,3 +764,17 @@ input, select, button{
   justify-content:center;
   text-align:center;
 }
+
+/* ==========================
+   Login SELLENCE Title
+   ========================== */
+.loginTitle{
+  margin-bottom:10px;
+}
+.loginTitle .sellenceBrand{
+  font-size:26px;
+}
+.loginTitle .sellenceSub{
+  font-size:14px;
+  opacity:.95;
+}
