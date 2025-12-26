@@ -719,3 +719,15 @@ input, select, button{
 .sellenceBrand{font-family:var(--logoFont,"Montserrat","Plus Jakarta Sans",sans-serif);font-weight:900;font-size:24px;letter-spacing:.18em;text-transform:uppercase;background:linear-gradient(180deg,#7a3cff,#5b2bd1);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 10px 24px rgba(0,0,0,.45)}
 .sellenceSub{font-family:var(--logoFont,"Montserrat","Plus Jakarta Sans",sans-serif);font-weight:700;font-size:13px;letter-spacing:.08em;color:#7a3cff}
 @media (min-width:768px){.sellenceBrand{font-size:28px}.sellenceSub{font-size:14px}}
+
+
+/* ==========================
+   Footer Status Schrift kleiner
+   ========================== */
+.footer .badge{
+  font-size:11px;
+  padding:4px 7px;
+}
+.footer .badge b{
+  font-size:11px;
+}
