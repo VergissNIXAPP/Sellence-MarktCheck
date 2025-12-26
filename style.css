@@ -720,14 +720,34 @@ input, select, button{
 .sellenceSub{font-family:var(--logoFont,"Montserrat","Plus Jakarta Sans",sans-serif);font-weight:700;font-size:13px;letter-spacing:.08em;color:#7a3cff}
 @media (min-width:768px){.sellenceBrand{font-size:28px}.sellenceSub{font-size:14px}}
 
-
 /* ==========================
-   Footer Status Schrift kleiner
+   FIX: Footer badges never wrap (e.g. "NICHT DA 10")
    ========================== */
-.footer .badge{
-  font-size:11px;
-  padding:4px 7px;
+.footer-inner{
+  flex-wrap:nowrap;
 }
-.footer .badge b{
-  font-size:11px;
+
+#footerStatusPill{
+  flex:1;
+  min-width:0;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:nowrap;
+}
+
+#footerStatusPill .badge{
+  white-space:nowrap;      /* keep "NICHT DA 10" in one line */
+  flex:0 0 auto;
+  padding:4px 8px;
+}
+
+/* Make the left progress text and right button not squeeze the center too much */
+#progressText{
+  flex:0 0 auto;
+  white-space:nowrap;
+}
+
+#btnSkip{
+  flex:0 0 auto;
+  white-space:nowrap;
 }
