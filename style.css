@@ -778,3 +778,15 @@ input, select, button{
   font-size:14px;
   opacity:.95;
 }
+
+/* ==========================
+   Premium Kategorie-Farbe (SELLENCE Gradient)
+   ========================== */
+.card-head b,
+.card-head span,
+.jumpSelect{
+  background: linear-gradient(180deg, #7a3cff, #5b2bd1);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
