@@ -793,3 +793,31 @@ input, select, button{
 .jumpSelect{
   color: rgba(235,240,255,0.9);
 }
+
+
+
+/* =========================
+   IMAGE NORMALIZATION FIX
+   ========================= */
+
+/* Image container: same visual height for all packshots */
+.imgBox{
+  max-height: clamp(220px, 38vh, 420px);
+  padding: 8px;
+}
+
+/* Always show full image, never crop */
+.imgBox img{
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Mobile fine tuning */
+@media (max-width: 480px){
+  .imgBox{
+    max-height: clamp(200px, 34vh, 360px);
+  }
+}
