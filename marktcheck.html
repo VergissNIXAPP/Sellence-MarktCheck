@@ -58,6 +58,9 @@
   </div>
 
   <div class="summary" id="summary">
+    <div class="printHeader">
+      <img src="assets/logo-sellence.png" alt="SELLENCE" />
+    </div>
     <h2 style="margin:0 0 10px;font-size:18px">Ergebnis</h2>
 
     <div class="field">
@@ -88,14 +91,13 @@
       <button class="miniBtn" id="btnReset">♻️ Reset</button>
       <button class="miniBtn primary" id="btnPrint">🖨️ PDF</button>
     </div>
-
     <div class="toast" id="toast"></div>
 
     <div class="tableWrap" style="margin-top:12px">
       <table id="resultTable">
         <thead>
           <tr>
-            <th>Bereich</th><th>Produkt</th><th>Preis</th><th>Inhalt</th><th>Status</th><th>Aktion</th>
+            <th>Bereich</th><th>Produkt</th><th>Preis</th><th>Inhalt</th><th>Status</th><th class="action-col">Aktion</th><th class="ean-col">Gebinde EAN</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -215,10 +217,9 @@
 {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Gold", price:7.5, content:"30g", img:"assets/marlboro_tabak/1106713-Marlboro-Gold-Tabak-Pouch.png"},
 {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red", price:7.5, content:"30g", img:"assets/marlboro_tabak/marlboro-tobaco-red.png"},
 {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Zware", price:10.0, content:"50g", img:"assets/marlboro_tabak/1113811-marlboro-drehtabak-zware.png"},
-{section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Gold M", price:19.95, content:"70g", img:"assets/marlboro_tabak/marlboro-tabak-gold-m-dose.png"},
-{section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red M", price:19.95, content:"70g", img:"assets/marlboro_tabak/marlboro-tabak-red-m-dose.png"},
+{section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Gold M", price:19.0, content:"70g", img:"assets/marlboro_tabak/1106713-Marlboro-Gold-Tabak-Pouch.png"},
+{section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red M", price:19.0, content:"70g", img:"assets/marlboro_tabak/1107585-marlboro-red-rot-premium-feinschnitt-xxl-tabak-dose.png"},
 {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red L", price:24.95, content:"103g", img:"assets/marlboro_tabak/1107301-marlboro-rot-tabak-l-dose.png"},
-{section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red XL", price:36.95, content:"155g", img:"assets/marlboro_tabak/1107585-marlboro-red-rot-premium-feinschnitt-xxl-tabak-dose.png"},
 
 // =======================
 // 7) L&M – Zigaretten (preisaufsteigend)
@@ -322,8 +323,7 @@
   const btnBack = document.getElementById("btnBack");
   const btnReset = document.getElementById("btnReset");
   const btnPrint = document.getElementById("btnPrint");
-
-  const stamp = document.getElementById("stamp");
+const stamp = document.getElementById("stamp");
   const onlyMissing = document.getElementById("onlyMissing");
   const toast = document.getElementById("toast");
   const resultTable = document.getElementById("resultTable");
@@ -475,6 +475,38 @@ function updateHeader(){
     showProduct();
   }
 
+
+  // --- EAN Barcode (nur für PDF/Print sichtbar) ---
+  function slugify(str){
+    return String(str || "")
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"") // accents
+      .replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss")
+      .replace(/[^a-z0-9]+/g,"-")
+      .replace(/-+/g,"-")
+      .replace(/^-|-$/g,"");
+  }
+
+  function eanSrc(p){
+    // Ordner-Logik:
+    // - IQOS / VEEV / TEREA sind bereits sauber als Slug-Dateien vorhanden
+    // - L&M nutzt Ordner "lm"
+    // - Marlboro Tabak nutzt Ordner "marlboro_tabak"
+    const b = (p.brand || "other");
+    let folder = slugify(b);
+
+    if(folder === "l-m") folder = "lm";
+
+    const sec = (p.section || "").toLowerCase();
+    const nm  = (p.name || "").toLowerCase();
+    if(folder === "marlboro" && (sec === "tabak" || nm.includes("tobacco") || nm.includes("tabak"))){
+      folder = "marlboro_tabak";
+    }
+
+    const file = slugify(p.name || "");
+    return `assets/ean/${folder}/${file}.png`;
+  }
+
   function fillTable(){
     const tbody = document.querySelector("#resultTable tbody");
     tbody.innerHTML = "";
@@ -491,9 +523,12 @@ function updateHeader(){
         <td>${euro(p.price)}</td>
         <td>${(p.content && String(p.content).trim()) ? p.content : "—"}</td>
         <td class="${st===true?'statusOk':(st===false?'statusNo':'')}">${st===true?'DA':(st===false?'NICHT DA':'OFFEN')}</td>
-        <td>
+        <td class="action-col">
           ${st===false ? '<button class="rowBtn ok" data-action="set-true" data-idx="'+idx+'">✅ jetzt DA</button>' : ''}
           ${st===true ? '<button class="rowBtn no" data-action="set-false" data-idx="'+idx+'">❌ doch NICHT</button>' : ''}
+        </td>
+        <td class="ean-col">
+          <img class="ean-img" src="${eanSrc(p)}" alt="EAN" onerror="this.outerHTML='—'">
         </td>
       `;
       tbody.appendChild(tr);
@@ -577,6 +612,10 @@ function updateHeader(){
     fillTable();
     window.print();
   });
+
+  // E-Mail (Outlook/Standard-Mail) – technisch kann ein Browser keine lokale PDF automatisch anhängen.
+  // Daher: PDF-Dialog öffnen + direkt eine Mail mit Betreff/Text vorbereiten.
+  // Auf Mobile (Outlook App) ist „Teilen“ mit Anhang möglich – das bauen wir gern als nächstes ein.
 
   window.addEventListener("keydown", (e)=>{
     if(summary.style.display === "block") return;

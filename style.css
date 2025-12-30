@@ -824,3 +824,21 @@ input, select, button{
     max-width: 88%;
   }
 }
+
+
+/* ===== EAN Barcodes (nur in PDF/Print anzeigen) ===== */
+.ean-col{display:none;}
+.ean-img{width:140px; height:auto; display:block; margin:0 auto;}
+
+
+/* ===== Print Header (SELLENCE Logo nur in PDF/Print) ===== */
+.printHeader{display:none;}
+.printHeader img{height:42px; width:auto; display:block;}
+
+@media print{
+  .printHeader{display:flex!important; justify-content:center; align-items:center; margin:0 0 10px 0;}
+}
+@media print{
+  .action-col{display:none!important;}
+  .ean-col{display:table-cell!important;}
+}
