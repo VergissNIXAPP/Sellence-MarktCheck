@@ -123,192 +123,145 @@
 
 <script>
   const data = [
-    // =======================
-// 1) IQOS – Geräte (IQOS)
-// =======================
-{section:"IQOS", brand:"IQOS", name:"IQOS ILUMA Kit Pebble Beige", price:null, content:"1 Stück", img:"assets/iqos/1045460-iqos-iluma-one-pebble-beige.png"},
-{section:"IQOS", brand:"IQOS", name:"IQOS ILUMA Kit Pebble Grey", price:null, content:"1 Stück", img:"assets/iqos/1045459-iqos-iluma-one-pebble-grey.png"},
-{section:"IQOS", brand:"IQOS", name:"IQOS ILUMAi Kit Breeze Blue", price:null, content:"1 Stück", img:"assets/iqos/1111589-iqos-iluma-i-kit-breeze-blue-regis-neu.png"},
-{section:"IQOS", brand:"IQOS", name:"IQOS ILUMAi ONE Kit Midnight Black", price:null, content:"1 Stück", img:"assets/iqos/1111595-iqos-iluma-i-kit-midnight-black-regis-neu.png"},
-{section:"IQOS", brand:"IQOS", name:"IQOS ILUMAi ONE Kit Vivid Terracotta", price:null, content:"1 Stück", img:"assets/iqos/1111607-iqos-iluma-i-one-vivid-terracotta-regis-neu.png"},
+  // =======================
+  // IQOS / TEREA
+  // =======================
+  {section:"IQOS", brand:"IQOS", name:"IQOS ILUMA Kit Pebble Beige", price:null, content:"1 Stück", img:"assets/iqos/1045460-iqos-iluma-one-pebble-beige.png"},
+  {section:"IQOS", brand:"IQOS", name:"IQOS ILUMA Kit Pebble Grey", price:null, content:"1 Stück", img:"assets/iqos/1045459-iqos-iluma-one-pebble-grey.png"},
+  {section:"IQOS", brand:"IQOS", name:"IQOS ILUMAi Kit Breeze Blue", price:null, content:"1 Stück", img:"assets/iqos/1111589-iqos-iluma-i-kit-breeze-blue-regis-neu.png"},
+  {section:"IQOS", brand:"IQOS", name:"IQOS ILUMAi ONE Kit Midnight Black", price:null, content:"1 Stück", img:"assets/iqos/1111595-iqos-iluma-i-kit-midnight-black-regis-neu.png"},
+  {section:"IQOS", brand:"IQOS", name:"IQOS ILUMAi ONE Kit Vivid Terracotta", price:null, content:"1 Stück", img:"assets/iqos/1111607-iqos-iluma-i-one-vivid-terracotta-regis-neu.png"},
+  {section:"IQOS", brand:"TEREA", name:"TEREA Amber Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108971-terea-tabaksticks-amber-pack.png"},
+  {section:"IQOS", brand:"TEREA", name:"TEREA Bronze Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108702-terea-tabaksticks-bronze-pack.png"},
+  {section:"IQOS", brand:"TEREA", name:"TEREA Russet Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108295-terea-tabaksticks-russet-pack.png"},
+  {section:"IQOS", brand:"TEREA", name:"TEREA Sienna Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108708-terea-tabaksticks-sienna-pack.png"},
+  {section:"IQOS", brand:"TEREA", name:"TEREA Silver Selection", price:7.5, content:"20 Stück", img:"assets/terea/1109372-terea-tabaksticks-silver-pack.png"},
+  {section:"IQOS", brand:"TEREA", name:"TEREA Teak Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108644-terea-tabaksticks-teak-pack.png"},
+  {section:"IQOS", brand:"TEREA", name:"TEREA Turquoise Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108701-terea-tabaksticks-turquoise-pack.png"},
+  {section:"IQOS", brand:"TEREA", name:"TEREA Warm Fuse Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108277-terea-tabaksticks-warm-fuse-pack.png"},
+  {section:"IQOS", brand:"TEREA", name:"TEREA Yellow Green Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108703-terea-tabaksticks-yellow-green-pack.png"},
+  {section:"IQOS", brand:"TEREA", name:"TEREA Yellow Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108987-terea-tabaksticks-yellow-pack.png"},
 
-// =======================
-// 2) IQOS – TEREA Sticks
-// =======================
-{section:"IQOS", brand:"TEREA", name:"TEREA Amber Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108971-terea-tabaksticks-amber-pack.png"},
-{section:"IQOS", brand:"TEREA", name:"TEREA Bronze Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108702-terea-tabaksticks-bronze-pack.png"},
-{section:"IQOS", brand:"TEREA", name:"TEREA Russet Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108295-terea-tabaksticks-russet-pack.png"},
-{section:"IQOS", brand:"TEREA", name:"TEREA Sienna Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108708-terea-tabaksticks-sienna-pack.png"},
-{section:"IQOS", brand:"TEREA", name:"TEREA Silver Selection", price:7.5, content:"20 Stück", img:"assets/terea/1109372-terea-tabaksticks-silver-pack.png"},
-{section:"IQOS", brand:"TEREA", name:"TEREA Teak Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108644-terea-tabaksticks-teak-pack.png"},
-{section:"IQOS", brand:"TEREA", name:"TEREA Turquoise Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108701-terea-tabaksticks-turquoise-pack.png"},
-{section:"IQOS", brand:"TEREA", name:"TEREA Warm Fuse Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108277-terea-tabaksticks-warm-fuse-pack.png"},
-{section:"IQOS", brand:"TEREA", name:"TEREA Yellow Green Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108703-terea-tabaksticks-yellow-green-pack.png"},
-{section:"IQOS", brand:"TEREA", name:"TEREA Yellow Selection", price:7.5, content:"20 Stück", img:"assets/terea/1108987-terea-tabaksticks-yellow-pack.png"},
+  // =======================
+  // VEEV
+  // =======================
+  {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Blue Raspberry", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Blue_Raspberry.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Classic Mint", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Classic_Mint.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Grape", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Grape.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Mango", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Mango.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Passion Fruit Kiwi Guava", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Passion_Fruit_Kiwi_Guava.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Sour Apple", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Sour_Apple.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Strawberry", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Strawberry.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Watermelon", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Watermelon.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Kit Velvet Black", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_One_Kit_Velvet_Black.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Kit Silky Grey", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_One_Kit_Silky_Grey.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Kit Freshy Green", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_One_Kit_Freshy_Green.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Balanced Tobacco", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Balanced_Tobacco.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Blue Mint", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Blue_Mint.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Blue Raspberry", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Blue_Raspberry.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Blueberry", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Blueberry.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Classic Tobacco", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Classic_Tobacco.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Green Mint", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Green_Mint.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Ice Mint", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Ice_Mint.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Mango", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Mango.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Peach", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Peach.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Sour Apple", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Sour_Apple.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Strawberry", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Strawberry.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Watermelon", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Watermelon.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Cherry", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Cherry.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Grape", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Grape.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Passion Fruit Kiwi Guava", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Passion_Fruit_Kiwi_Guava.png"},
+  {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Red Berries", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Red_Berries.png"},
 
-// =======================
-// VEEV – GERÄTE
-// =======================
-{section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Blue Raspberry", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Blue_Raspberry.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Classic Mint", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Classic_Mint.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Grape", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Grape.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Mango", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Mango.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Passion Fruit Kiwi Guava", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Passion_Fruit_Kiwi_Guava.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Sour Apple", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Sour_Apple.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Strawberry", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Strawberry.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV NOW ULTRA Watermelon", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_NOW_ULTRA_Watermelon.png"},
+  // =======================
+  // Zigaretten + Cigarillos (nach Marke, Preis aufsteigend)
+  // =======================
+  {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue King Size Filter Cigarillos OP Box", price:3, content:"17 Stück", img:"assets/chesterfield/1110813-chesterfield-op-blue-zigaretten-einzel.png"},
+  {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Red King Size Filter Cigarillos OP Box", price:3, content:"17 Stück", img:"assets/chesterfield/1107630-chesterfield-unplugged-red-pouch-tabak.png"},
+  {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue OP Box", price:8.6, content:"20 Stück", img:"assets/chesterfield/1110813-chesterfield-op-blue-zigaretten-einzel.png"},
+  {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Original OP-Box", price:8.6, content:"20 Stück", img:"assets/chesterfield/1111367-chesterfield-op-original-zigaretten-einzel.png"},
+  {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue OP XL-Box", price:10, content:"25 Stück", img:"assets/chesterfield/1110813-chesterfield-op-blue-zigaretten-einzel.png"},
+  {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Original OP XL-Box", price:10, content:"25 Stück", img:"assets/chesterfield/1111367-chesterfield-op-original-zigaretten-einzel.png"},
+  {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue OP 2XL-Box", price:12, content:"31 Stück", img:"assets/chesterfield/1113935-chesterfield-blue-zigaretten-2xl.png"},
+  {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Original OP 2XL-Box", price:12, content:"31 Stück", img:"assets/chesterfield/1111760-chesterfield-2xl-original-zigaretten.png"},
+  {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue OP 4XL-Box", price:15, content:"39 Stück", img:"assets/chesterfield/1113935-chesterfield-blue-zigaretten-2xl.png"},
+  {section:"Zigaretten", brand:"f6", name:"F6 Original OP-Box", price:8.6, content:"20 Stück", img:"assets/other/1109946-f6-zigaretten-original.png"},
+  {section:"Zigaretten", brand:"f6", name:"f6 Blue OP XL-Box", price:10, content:"25 Stück", img:"assets/other/1109303-f6-zigaretten-original-xl.png"},
+  {section:"Zigaretten", brand:"f6", name:"F6 Original OP XL-Box", price:10, content:"25 Stück", img:"assets/other/1109303-f6-zigaretten-original-xl.png"},
+  {section:"Zigaretten", brand:"f6", name:"F6 Original OP 2XL-Box", price:12, content:"31 Stück", img:"assets/other/1111626-f6-zigaretten-original-2xl.png"},
+  {section:"Zigaretten", brand:"f6", name:"f6 Blue OP 7XL-Box", price:21, content:"60 Stück", img:"assets/other/1109303-f6-zigaretten-original-xl.png"},
+  {section:"Zigaretten", brand:"f6", name:"f6 Original OP 7XL-Box", price:21, content:"60 Stück", img:"assets/other/1109303-f6-zigaretten-original-xl.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Filter Cigarillos Blue Label OP Box", price:3, content:"17 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Filter Cigarillos Redlabel OP Box", price:3, content:"17 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Red Label LONG OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Simply Blue OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Simply Red OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP XL-Box", price:10, content:"25 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP XL-Box", price:10, content:"25 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP 2XL-Box", price:12, content:"31 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 2XL-Box", price:12, content:"31 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP 4XL-Box", price:15, content:"39 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 4XL-Box", price:15, content:"39 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP 7XL-Box", price:21, content:"60 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 7XL-Box", price:21, content:"60 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+  {section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 9XL-Box", price:28, content:"80 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Gold OP-Box", price:8, content:"20 Stück", img:"assets/marlboro/1112018-malboro-crafted-gold-zigaretten-op.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Red OP-Box", price:8, content:"20 Stück", img:"assets/marlboro/1112014-malboro-crafted-red-zigaretten-op.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP-Box", price:9, content:"20 Stück", img:"assets/marlboro/1109513-marlboro-gold-long-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold Soft Label OP Soft", price:9, content:"20 Stück", img:"assets/marlboro/1109513-marlboro-gold-long-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Mix OP-Box", price:9, content:"20 Stück", img:"assets/marlboro/1109634-malboro-mix-op-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP-Box", price:9, content:"20 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red Soft Label OP Soft", price:9, content:"20 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Silver Blue OP-Box", price:9, content:"20 Stück", img:"assets/marlboro/1109488-malboro-gold-zigaretten-xl.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Simply Blue OP-Box", price:9, content:"20 Stück", img:"assets/marlboro/1109488-malboro-gold-zigaretten-xl.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Simply Red OP-Box", price:9, content:"20 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro White OP-Box", price:9, content:"20 Stück", img:"assets/marlboro/1109488-malboro-gold-zigaretten-xl.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold LONG OP-Box", price:9.1, content:"20 Stück", img:"assets/marlboro/1109488-malboro-gold-zigaretten-xl.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red LONG OP-Box", price:9.1, content:"20 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Gold OP 2XL-Box", price:10, content:"27 Stück", img:"assets/marlboro/1112020-malboro-crafted-gold-zigaretten-2xl.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Red OP 2XL-Box", price:10, content:"27 Stück", img:"assets/marlboro/1112016-malboro-crafted-red-zigaretten-2xl.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP XL-Box", price:10, content:"23 Stück", img:"assets/marlboro/1109488-malboro-gold-zigaretten-xl.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Mix OP XL-Box", price:10, content:"23 Stück", img:"assets/marlboro/1109406-malboro-mix-xl-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP XL-Box", price:10, content:"23 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP 2XL-Box", price:12, content:"29 Stück", img:"assets/marlboro/1112020-malboro-crafted-gold-zigaretten-2xl.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Mix OP 2XL-Box", price:12, content:"29 Stück", img:"assets/marlboro/1109634-malboro-mix-op-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP 2XL-Box", price:12, content:"29 Stück", img:"assets/marlboro/1109783-malboro-red-2xl-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP 4XL-Box", price:15, content:"36 Stück", img:"assets/marlboro/1109662-malboro-gold-4xl-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP 4XL-Box", price:15, content:"36 Stück", img:"assets/marlboro/1109876-malboro-red-4xl-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Gold OP 7XL-Box", price:20, content:"60 Stück", img:"assets/marlboro/1113475-malboro-gold-crafted-7xl-zigaretten-schachtel.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Red OP 7XL-Box", price:20, content:"60 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP 7XL-Box", price:20, content:"52 Stück", img:"assets/marlboro/1109513-marlboro-gold-long-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP 7XL-Box", price:20, content:"52 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+  {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP 9XL-Box", price:30, content:"80 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
+  {section:"Zigaretten", brand:"Other", name:"Parliament Night Blue LONG OP-Box", price:9, content:"20 Stück", img:"assets/other/1109946-f6-zigaretten-original.png"},
+  {section:"Zigaretten", brand:"Other", name:"EVE 120 OP-Box", price:9.3, content:"20 Stück", img:"assets/other/1109946-f6-zigaretten-original.png"},
 
-{section:"VEEV", brand:"VEEV", name:"VEEV One Kit Velvet Black", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_One_Kit_Velvet_Black.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Kit Silky Grey", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_One_Kit_Silky_Grey.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Kit Freshy Green", price:9.9, content:"1 Stück", img:"assets/veev/VEEV_One_Kit_Freshy_Green.png"},
-
-// =======================
-// VEEV – PODS
-// =======================
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Balanced Tobacco", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Balanced_Tobacco.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Blue Mint", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Blue_Mint.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Blue Raspberry", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Blue_Raspberry.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Blueberry", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Blueberry.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Classic Tobacco", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Classic_Tobacco.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Green Mint", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Green_Mint.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Ice Mint", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Ice_Mint.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Mango", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Mango.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Peach", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Peach.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Sour Apple", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Sour_Apple.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Strawberry", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Strawberry.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Watermelon", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Watermelon.png"},
-    {section:"VEEV", brand:"VEEV", name:"VEEV One Pods Cherry", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Cherry.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Grape", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Grape.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Passion Fruit Kiwi Guava", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Passion_Fruit_Kiwi_Guava.png"},
-{section:"VEEV", brand:"VEEV", name:"VEEV One Pods Red Berries", price:9.9, content:"2 Stück", img:"assets/veev/VEEV_One_Pods_Red_Berries.png"},
-
-// =======================
-// 5) Marlboro – Zigaretten (preisaufsteigend)
-// =======================
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Gold OP-Box", price:8.0, content:"20 Stück", img:"assets/marlboro/1112018-malboro-crafted-gold-zigaretten-op.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Red OP-Box", price:8.0, content:"20 Stück", img:"assets/marlboro/1112014-malboro-crafted-red-zigaretten-op.png"},
-
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP-Box", price:9.0, content:"20 Stück", img:"assets/marlboro/1109513-marlboro-gold-long-zigaretten.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold Soft Label OP Soft", price:9.0, content:"20 Stück", img:"assets/marlboro/1109513-marlboro-gold-long-zigaretten.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Mix OP-Box", price:9.0, content:"20 Stück", img:"assets/marlboro/1109634-malboro-mix-op-zigaretten.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP-Box", price:9.0, content:"20 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red Soft Label OP Soft", price:9.0, content:"20 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
-
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Gold OP 2XL-Box", price:10.0, content:"27 Stück", img:"assets/marlboro/1112020-malboro-crafted-gold-zigaretten-2xl.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Red OP 2XL-Box", price:10.0, content:"27 Stück", img:"assets/marlboro/1112016-malboro-crafted-red-zigaretten-2xl.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP XL-Box", price:10.0, content:"23 Stück", img:"assets/marlboro/1109488-malboro-gold-zigaretten-xl.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Mix OP XL-Box", price:10.0, content:"23 Stück", img:"assets/marlboro/1109406-malboro-mix-xl-zigaretten.png"},
-
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP 2XL-Box", price:12.0, content:"29 Stück", img:"assets/marlboro/1112020-malboro-crafted-gold-zigaretten-2xl.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Mix OP 2XL-Box", price:12.0, content:"29 Stück", img:"assets/marlboro/1109634-malboro-mix-op-zigaretten.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP 2XL-Box", price:12.0, content:"29 Stück", img:"assets/marlboro/1109783-malboro-red-2xl-zigaretten.png"},
-
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP 4XL-Box", price:15.0, content:"36 Stück", img:"assets/marlboro/1109662-malboro-gold-4xl-zigaretten.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP 4XL-Box", price:15.0, content:"36 Stück", img:"assets/marlboro/1109876-malboro-red-4xl-zigaretten.png"},
-
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Gold OP 7XL-Box", price:20.0, content:"60 Stück", img:"assets/marlboro/1113475-malboro-gold-crafted-7xl-zigaretten-schachtel.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Crafted Red OP 7XL-Box", price:20.0, content:"60 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold OP 7XL-Box", price:20.0, content:"52 Stück", img:"assets/marlboro/1109513-marlboro-gold-long-zigaretten.png"},
-{section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP 7XL-Box", price:20.0, content:"52 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
-
-// =======================
-// 6) Marlboro – Tabak (preisaufsteigend)
-// =======================
-{section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Gold", price:7.5, content:"30g", img:"assets/marlboro_tabak/1106713-Marlboro-Gold-Tabak-Pouch.png"},
-{section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red", price:7.5, content:"30g", img:"assets/marlboro_tabak/marlboro-tobaco-red.png"},
-{section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Zware", price:10.0, content:"50g", img:"assets/marlboro_tabak/1113811-marlboro-drehtabak-zware.png"},
-{section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Gold M", price:19.0, content:"70g", img:"assets/marlboro_tabak/1106713-Marlboro-Gold-Tabak-Pouch.png"},
-{section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red M", price:19.0, content:"70g", img:"assets/marlboro_tabak/1107585-marlboro-red-rot-premium-feinschnitt-xxl-tabak-dose.png"},
-{section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red L", price:24.95, content:"103g", img:"assets/marlboro_tabak/1107301-marlboro-rot-tabak-l-dose.png"},
-
-// =======================
-// 7) L&M – Zigaretten (preisaufsteigend)
-// =======================
-{section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
-{section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
-
-{section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP XL-Box", price:10.0, content:"25 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
-{section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP XL-Box", price:10.0, content:"25 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
-
-{section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP 2XL-Box", price:12.0, content:"31 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
-{section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 2XL-Box", price:12.0, content:"31 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
-
-{section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 4XL-Box", price:15.0, content:"39 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
-{section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 7XL-Box", price:21.0, content:"60 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
-{section:"Zigaretten", brand:"L&M", name:"L&M Red Label OP 9XL-Box", price:28.0, content:"80 Stück", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
-
-// =======================
-// 8) L&M – Tabak (preisaufsteigend)
-// =======================
-{section:"Tabak", brand:"L&M", name:"L&M Cigarette Tobacco Red", price:7.4, content:"30g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
-{section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Blue M", price:12.65, content:"39g", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
-{section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red M", price:12.65, content:"39g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
-{section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red L", price:19.95, content:"65g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
-{section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red", price:24.95, content:"85g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
-{section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red Big", price:34.95, content:"129g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
-{section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red Mega", price:49.95, content:"185g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
-
-// =======================
-// 9) Chesterfield – Zigaretten (preisaufsteigend)
-// =======================
-{section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue OP Box", price:8.6, content:"20 Stück", img:"assets/chesterfield/1110813-chesterfield-op-blue-zigaretten-einzel.png"},
-{section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Original OP-Box", price:8.6, content:"20 Stück", img:"assets/chesterfield/1111367-chesterfield-op-original-zigaretten-einzel.png"},
-
-{section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue OP XL-Box", price:10.0, content:"25 Stück", img:"assets/chesterfield/1110813-chesterfield-op-blue-zigaretten-einzel.png"},
-{section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Original OP XL-Box", price:10.0, content:"25 Stück", img:"assets/chesterfield/1111367-chesterfield-op-original-zigaretten-einzel.png"},
-
-{section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue OP 2XL-Box", price:12.0, content:"31 Stück", img:"assets/chesterfield/1113935-chesterfield-blue-zigaretten-2xl.png"},
-{section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Original OP 2XL-Box", price:12.0, content:"31 Stück", img:"assets/chesterfield/1111760-chesterfield-2xl-original-zigaretten.png"},
-
-// =======================
-// 10) Chesterfield – Tabak (preisaufsteigend)
-// =======================
-{section:"Tabak", brand:"Chesterfield", name:"Chesterfield Unplugged Red", price:7.2, content:"30g", img:"assets/chesterfield/1107630-chesterfield-unplugged-red-pouch-tabak.png"},
-{section:"Tabak", brand:"Chesterfield", name:"Chesterfield Volume Tobacco Red M", price:9.95, content:"40g", img:"assets/chesterfield/1103183-Chesterfield-Dose-M-Tabak.png"},
-{section:"Tabak", brand:"Chesterfield", name:"Chesterfield Volume Tobacco Red Mega", price:29.95, content:"135g", img:"assets/chesterfield/1108755-chesterfield-red-mega-box-volumentabak.png"},
-{section:"Tabak", brand:"Chesterfield", name:"Chesterfield Volume Tobacco Red Giga", price:49.95, content:"255g", img:"assets/chesterfield/1107630-chesterfield-unplugged-red-pouch-tabak.png"},
-
-// =======================
-// 11) Alles andere (Rest)
-// =======================
-// Tabak
-{section:"Tabak", brand:"Pielroja", name:"Pielroja Rolling Tobacco", price:6.0, content:"30g", img:"assets/other/1104598-pielroja-drehtabak.png"},
-
-// Zigaretten
-{section:"Zigaretten", brand:"f6", name:"F6 Original OP-Box", price:8.6, content:"20 Stück", img:"assets/other/1109946-f6-zigaretten-original.png"},
-{section:"Zigaretten", brand:"f6", name:"F6 Original OP XL-Box", price:10.0, content:"25 Stück", img:"assets/other/1109303-f6-zigaretten-original-xl.png"},
-{section:"Zigaretten", brand:"f6", name:"F6 Original OP 2XL-Box", price:12.0, content:"31 Stück", img:"assets/other/1111626-f6-zigaretten-original-2xl.png"},
-
-
-    // --- Ergänzt aus Sortimentsübersicht Zigaretten (10/2025) ---
-    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP XL-Box", price:10.0, content:"23 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
-    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red LONG OP-Box", price:9.1, content:"20 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
-    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Red OP 9XL-Box", price:30.0, content:"80 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
-    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Gold LONG OP-Box", price:9.1, content:"20 Stück", img:"assets/marlboro/1109488-malboro-gold-zigaretten-xl.png"},
-    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Simply Red OP-Box", price:9.0, content:"20 Stück", img:"assets/marlboro/1109417-marlboro-7xl-red-zigaretten.png"},
-    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Simply Blue OP-Box", price:9.0, content:"20 Stück", img:"assets/marlboro/1109488-malboro-gold-zigaretten-xl.png"},
-    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro White OP-Box", price:9.0, content:"20 Stück", img:"assets/marlboro/1109488-malboro-gold-zigaretten-xl.png"},
-    {section:"Zigaretten", brand:"Marlboro", name:"Marlboro Silver Blue OP-Box", price:9.0, content:"20 Stück", img:"assets/marlboro/1109488-malboro-gold-zigaretten-xl.png"},
-    {section:"Zigaretten", brand:"L&M", name:"L&M Red Label LONG OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
-    {section:"Zigaretten", brand:"L&M", name:"L&M Simply Red OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
-    {section:"Zigaretten", brand:"L&M", name:"L&M Simply Blue OP-Box", price:8.6, content:"20 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
-    {section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP 4XL-Box", price:15.0, content:"39 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
-    {section:"Zigaretten", brand:"L&M", name:"L&M Blue Label OP 7XL-Box", price:21.0, content:"60 Stück", img:"assets/lm/1109516-l-m-blau-2XL-Zigaretten.png"},
-    {section:"Zigaretten", brand:"Chesterfield", name:"Chesterfield Blue OP 4XL-Box", price:15.0, content:"39 Stück", img:"assets/chesterfield/1113935-chesterfield-blue-zigaretten-2xl.png"},
-    {section:"Zigaretten", brand:"f6", name:"f6 Original OP 7XL-Box", price:21.0, content:"60 Stück", img:"assets/other/1109303-f6-zigaretten-original-xl.png"},
-    {section:"Zigaretten", brand:"f6", name:"f6 Blue OP XL-Box", price:10.0, content:"25 Stück", img:"assets/other/1109303-f6-zigaretten-original-xl.png"},
-    {section:"Zigaretten", brand:"f6", name:"f6 Blue OP 7XL-Box", price:21.0, content:"60 Stück", img:"assets/other/1109303-f6-zigaretten-original-xl.png"},
-    {section:"Zigaretten", brand:"Other", name:"EVE 120 OP-Box", price:9.3, content:"20 Stück", img:"assets/other/1109946-f6-zigaretten-original.png"},
-    {section:"Zigaretten", brand:"Other", name:"Parliament Night Blue LONG OP-Box", price:9.0, content:"20 Stück", img:"assets/other/1109946-f6-zigaretten-original.png"},
-    // --- Ende Ergänzungen ---
-
-// Zigarillos
-{section:"Zigarillos", brand:"Chesterfield", name:"Chesterfield Blue King Size Filter Cigarillos OP Box", price:3.0, content:"17 Stück", img:"assets/chesterfield/1110813-chesterfield-op-blue-zigaretten-einzel.png"},
-{section:"Zigarillos", brand:"Chesterfield", name:"Chesterfield Red King Size Filter Cigarillos OP Box", price:3.0, content:"17 Stück", img:"assets/chesterfield/1107630-chesterfield-unplugged-red-pouch-tabak.png"},
-{section:"Zigarillos", brand:"L&M", name:"L&M Filter Cigarillos Blue Label OP Box", price:3.0, content:"17 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
-{section:"Zigarillos", brand:"L&M", name:"L&M Filter Cigarillos Redlabel OP Box", price:3.0, content:"17 Stück", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
-    
-  ];
+  // =======================
+  // Tabak (Beutel/Dose/Box nach Marke, Preis aufsteigend)
+  // =======================
+  {section:"Tabak", brand:"Chesterfield", name:"Chesterfield Unplugged Red", price:7.2, content:"30g", img:"assets/chesterfield/1107630-chesterfield-unplugged-red-pouch-tabak.png"},
+  {section:"Tabak", brand:"Chesterfield", name:"Chesterfield Volume Tobacco Red M", price:9.95, content:"40g", img:"assets/chesterfield/1103183-Chesterfield-Dose-M-Tabak.png"},
+  {section:"Tabak", brand:"Chesterfield", name:"Chesterfield Volume Tobacco Red Mega", price:29.95, content:"135g", img:"assets/chesterfield/1108755-chesterfield-red-mega-box-volumentabak.png"},
+  {section:"Tabak", brand:"Chesterfield", name:"Chesterfield Volume Tobacco Red Giga", price:49.95, content:"255g", img:"assets/chesterfield/1107630-chesterfield-unplugged-red-pouch-tabak.png"},
+  {section:"Tabak", brand:"L&M", name:"L&M Cigarette Tobacco Red", price:7.4, content:"30g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+  {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Blue M", price:12.65, content:"39g", img:"assets/lm/1107592-l-m-dose-rot-volumentabak.png"},
+  {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red M", price:12.65, content:"39g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+  {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red L", price:19.95, content:"65g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+  {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red", price:24.95, content:"85g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+  {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red Big", price:34.95, content:"129g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+  {section:"Tabak", brand:"L&M", name:"L&M Volume Tobacco Red Mega", price:49.95, content:"185g", img:"assets/lm/1108129-lm-red-m-dose-volumentabak.png"},
+  {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Gold", price:7.5, content:"30g", img:"assets/ean/marlboro_tabak/marlboro-premium-tobacco-gold.png"},
+  {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red", price:7.5, content:"30g", img:"assets/ean/marlboro_tabak/marlboro-premium-tobacco-red.png"},
+  {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Zware", price:10, content:"50g", img:"assets/ean/marlboro_tabak/marlboro-premium-tobacco-zware.png"},
+  {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Gold M", price:19, content:"70g", img:"assets/marlboro_tabak/1106713-Marlboro-Gold-Tabak-Pouch.png"},
+  {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red M", price:19, content:"70g", img:"assets/marlboro_tabak/1107585-marlboro-red-rot-premium-feinschnitt-xxl-tabak-dose.png"},
+  {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red L", price:24.95, content:"103g", img:"assets/marlboro_tabak/1107301-marlboro-rot-tabak-l-dose.png"},
+  {section:"Tabak", brand:"Marlboro", name:"Marlboro Premium Tobacco Red XL", price:36.95, content:"155g", img:"assets/marlboro_tabak/1107585-marlboro-red-rot-premium-feinschnitt-xxl-tabak-dose.png"},
+  {section:"Tabak", brand:"Marlboro", name:"Marlboro Crafted Mega", price:49.95, content:"230g", img:"assets/ean/marlboro_tabak/Marlboro Crafted Box 230g Mega.png"},
+  {section:"Tabak", brand:"Pielroja", name:"Pielroja Rolling Tobacco", price:6, content:"30g", img:"assets/other/1104598-pielroja-drehtabak.png"},
+];
 
   const KEY = "marktcheck.answers.unified.v1";
   let answers = JSON.parse(localStorage.getItem(KEY) || "[]");
@@ -510,31 +463,230 @@ function updateHeader(){
       .replace(/^-|-$/g,"");
   }
 
-  const EAN_FILE_MAP = {"chesterfield": {"chesterfield-blue-king-size-filter-cigarillos-op-box-pack-17-stk-gebinde": "Chesterfield Blue King Size Filter Cigarillos OP Box Pack 17 Stk Gebinde.png", "chesterfield-red-king-size-filter-cigarillos-op-box-pack-17-stk-gebinde": "Chesterfield Red King Size Filter Cigarillos OP Box Pack 17 Stk Gebinde.png", "chesterfield-unplugged-red-pouch-30g-gebinde": "Chesterfield Unplugged Red Pouch 30g Gebinde.png", "chesterfield-volume-tobacco-red-box-135g-mega": "Chesterfield Volume Tobacco Red Box 135g Mega.png", "chesterfield-volume-tobacco-red-box-255g-giga": "Chesterfield Volume Tobacco Red Box 255g Giga.png", "chesterfield-volume-tobacco-red-dose-40g-m-gebinde": "Chesterfield Volume Tobacco Red Dose 40g M Gebinde.png", "chesterfield-zigaretten-blue-5x39er": "Chesterfield Zigaretten Blue (5x39er).png", "chesterfield-zigaretten-blue-8x25er": "Chesterfield Zigaretten Blue (8x25er).png", "chesterfield-zigaretten-blue-8x31er": "Chesterfield Zigaretten Blue (8x31er).png", "chesterfield-zigaretten-original-8x25er": "Chesterfield Zigaretten Original (8x25er).png", "chesterfield-zigaretten-original-8x31er": "Chesterfield Zigaretten Original (8x31er).png", "chesterfield-blue-op-box": "chesterfield-blue-op-box.png", "chesterfield-original-op-box": "chesterfield-original-op-box.png", "chesterfield-blue-op-xl-box": "chesterfield-blue-op-xl-box.png", "chesterfield-original-op-xl-box": "chesterfield-original-op-xl-box.png", "chesterfield-blue-op-2xl-box": "chesterfield-blue-op-2xl-box.png", "chesterfield-original-op-2xl-box": "chesterfield-original-op-2xl-box.png", "chesterfield-unplugged-red": "chesterfield-unplugged-red.png", "chesterfield-volume-tobacco-red-m": "chesterfield-volume-tobacco-red-m.png", "chesterfield-volume-tobacco-red-mega": "chesterfield-volume-tobacco-red-mega.png", "chesterfield-volume-tobacco-red-giga": "chesterfield-volume-tobacco-red-giga.png", "chesterfield-blue-king-size-filter-cigarillos-op-box": "chesterfield-blue-king-size-filter-cigarillos-op-box.png", "chesterfield-red-king-size-filter-cigarillos-op-box": "chesterfield-red-king-size-filter-cigarillos-op-box.png"}, "lm": {"l-m-zigaretten-blue-label-10x20er": "L&M Zigaretten Blue Label (10x20er).png", "l-m-zigaretten-blue-label-5x39er": "L&M Zigaretten Blue Label (5x39er).png", "l-m-zigaretten-blue-label-6x39er": "L&M Zigaretten Blue Label (6x39er).png", "l-m-zigaretten-blue-label-8x20er": "L&M Zigaretten Blue Label (8x20er).png", "l-m-zigaretten-blue-label-8x25er": "L&M Zigaretten Blue Label (8x25er).png", "l-m-zigaretten-blue-label-8x31er": "L&M Zigaretten Blue Label (8x31er).png", "l-m-zigaretten-red-label-3x60er": "L&M Zigaretten Red Label (3x60er).png", "l-m-zigaretten-red-label-8x25er": "L&M Zigaretten Red Label (8x25er).png", "l-m-zigaretten-red-label-8x31er": "L&M Zigaretten Red Label (8x31er).png", "l-m-zigaretten-red-label-long-10x20er": "L&M Zigaretten Red Label Long (10x20er).png", "l-m-zigaretten-simply-blue-10x20er": "L&M Zigaretten Simply Blue (10x20er).png", "lm-cigarette-tobacco-red-pouch-30g-gebinde": "LM Cigarette Tobacco Red Pouch 30g Gebinde.png", "lm-filter-cigarillos-blue-label-op-box-pack-17-stk-gebinde": "LM Filter Cigarillos Blue Label OP Box Pack 17 Stk Gebinde.png", "lm-filter-cigarillos-red-label-op-box-pack-17-stk-gebinde": "LM Filter Cigarillos Red Label OP Box Pack 17 Stk Gebinde.png", "lm-volume-tobacco-blue-dose-39g-m-gebinde": "LM Volume Tobacco Blue Dose 39g M Gebinde.png", "lm-volume-tobacco-red-beutel-85g": "LM Volume Tobacco Red Beutel 85g.png", "lm-volume-tobacco-red-box-129g-big": "LM Volume Tobacco Red Box 129g Big.png", "lm-volume-tobacco-red-box-185g-mega": "LM Volume Tobacco Red Box 185g Mega.png", "lm-volume-tobacco-red-dose-39g-m-gebinde": "LM Volume Tobacco Red Dose 39g M Gebinde.png", "lm-volume-tobacco-red-dose-65g-l-gebinde": "LM Volume Tobacco Red Dose 65g L Gebinde.png", "l-m-blue-label-op-box": "l-m-blue-label-op-box.png", "l-m-red-label-op-box": "l-m-red-label-op-box.png", "l-m-blue-label-op-xl-box": "l-m-blue-label-op-xl-box.png", "l-m-red-label-op-xl-box": "l-m-red-label-op-xl-box.png", "l-m-blue-label-op-2xl-box": "l-m-blue-label-op-2xl-box.png", "l-m-red-label-op-2xl-box": "l-m-red-label-op-2xl-box.png", "l-m-red-label-op-4xl-box": "l-m-red-label-op-4xl-box.png", "l-m-red-label-op-7xl-box": "l-m-red-label-op-7xl-box.png", "l-m-red-label-op-9xl-box": "l-m-red-label-op-9xl-box.png", "l-m-cigarette-tobacco-red": "l-m-cigarette-tobacco-red.png", "l-m-volume-tobacco-blue-m": "l-m-volume-tobacco-blue-m.png", "l-m-volume-tobacco-red-m": "l-m-volume-tobacco-red-m.png", "l-m-volume-tobacco-red-l": "l-m-volume-tobacco-red-l.png", "l-m-volume-tobacco-red": "l-m-volume-tobacco-red.png", "l-m-volume-tobacco-red-big": "l-m-volume-tobacco-red-big.png", "l-m-volume-tobacco-red-mega": "l-m-volume-tobacco-red-mega.png", "l-m-filter-cigarillos-blue-label-op-box": "l-m-filter-cigarillos-blue-label-op-box.png", "l-m-filter-cigarillos-redlabel-op-box": "l-m-filter-cigarillos-redlabel-op-box.png"}, "marlboro": {"marlboro-mix-op-2xl-box": "marlboro-mix-op-2xl-box.png", "marlboro-mix-op-xl-box": "marlboro-mix-op-xl-box.png", "marlboro-mix-op-box": "marlboro-mix-op-box.png", "marlboro-red-long-op-box": "MARLBORO RED LONG OP-BOX.png", "marlboro-red-op-2xl-box": "marlboro-red-op-2xl-box.png", "marlboro-red-op-4xl-box": "marlboro-red-op-4xl-box.png", "marlboro-red-op-7xl-box": "marlboro-red-op-7xl-box.png", "marlboro-red-op-9xl-box": "MARLBORO RED OP 9XL-BOX.png", "marlboro-red-op-xl-box": "MARLBORO RED OP XL-BOX.png", "marlboro-red-op-box": "marlboro-red-op-box.png", "marlboro-red-soft-label-op-soft": "marlboro-red-soft-label-op-soft.png", "marlboro-zigaretten-crafted-gold-10x20er": "Marlboro Zigaretten Crafted Gold (10x20er).png", "marlboro-zigaretten-crafted-gold-60er": "Marlboro Zigaretten Crafted Gold (60er).png", "marlboro-zigaretten-crafted-gold-2xl-8x27er": "Marlboro Zigaretten Crafted Gold 2XL (8x27er).png", "marlboro-zigaretten-crafted-red-10x20er": "Marlboro Zigaretten Crafted Red (10x20er).png", "marlboro-zigaretten-crafted-red-60er": "Marlboro Zigaretten Crafted Red (60er).png", "marlboro-zigaretten-crafted-red-2xl-8x27er": "Marlboro Zigaretten Crafted Red 2XL (8x27er).png", "marlboro-zigaretten-gold-10x20er": "Marlboro Zigaretten Gold (10x20er).png", "marlboro-zigaretten-gold-3x52er": "Marlboro Zigaretten Gold (3x52er).png", "marlboro-zigaretten-gold-5x39er": "Marlboro Zigaretten Gold (5x39er).png", "marlboro-zigaretten-gold-8x23er": "Marlboro Zigaretten Gold (8x23er).png", "marlboro-zigaretten-gold-long-10x20er": "Marlboro Zigaretten Gold Long (10x20er).png", "marlboro-zigaretten-gold-soft-label-10x20er": "Marlboro Zigaretten Gold Soft Label (10x20er).png", "marlboro-zigaretten-red-8x20er": "Marlboro Zigaretten Red (8x20er).png", "marlboro-zigaretten-red-8x25er": "Marlboro Zigaretten Red (8x25er).png", "marlboro-zigaretten-silver-blue-10x20er": "Marlboro Zigaretten Silver Blue (10x20er).png", "marlboro-zigaretten-simply-blue-10x20er": "Marlboro Zigaretten Simply Blue (10x20er).png", "marlboro-zigaretten-simply-red-10x20er": "Marlboro Zigaretten Simply Red (10x20er).png", "marlboro-zigaretten-white-10x20er": "Marlboro Zigaretten White (10x20er).png", "marlboro-zigaretten-white-5x39er": "Marlboro Zigaretten White (5x39er).png", "marlboro-zigaretten-white-8x25er": "Marlboro Zigaretten White (8x25er).png", "marlboro-zigaretten-white-8x31er": "Marlboro Zigaretten White (8x31er).png", "marlboro-crafted-gold-op-box": "marlboro-crafted-gold-op-box.png", "marlboro-crafted-red-op-box": "marlboro-crafted-red-op-box.png", "marlboro-gold-op-box": "marlboro-gold-op-box.png", "marlboro-gold-soft-label-op-soft": "marlboro-gold-soft-label-op-soft.png", "marlboro-crafted-gold-op-2xl-box": "marlboro-crafted-gold-op-2xl-box.png", "marlboro-crafted-red-op-2xl-box": "marlboro-crafted-red-op-2xl-box.png", "marlboro-gold-op-xl-box": "marlboro-gold-op-xl-box.png", "marlboro-gold-op-2xl-box": "marlboro-gold-op-2xl-box.png", "marlboro-gold-op-4xl-box": "marlboro-gold-op-4xl-box.png", "marlboro-crafted-gold-op-7xl-box": "marlboro-crafted-gold-op-7xl-box.png", "marlboro-crafted-red-op-7xl-box": "marlboro-crafted-red-op-7xl-box.png", "marlboro-gold-op-7xl-box": "marlboro-gold-op-7xl-box.png"}, "marlboro_tabak": {"marlboro-crafted-box-230g-mega": "Marlboro Crafted Box 230g Mega.png", "marlboro-premium-tobacco-gold-dose-70g-m-gebinde": "Marlboro Premium Tobacco Gold Dose 70g M Gebinde.png", "marlboro-premium-tobacco-gold-pouch-30g-gebinde": "Marlboro Premium Tobacco Gold Pouch 30g Gebinde.png", "marlboro-premium-tobacco-red-dose-103g-l-gebinde": "Marlboro Premium Tobacco Red Dose 103g L Gebinde.png", "marlboro-premium-tobacco-red-dose-155g-xl-gebinde": "Marlboro Premium Tobacco Red Dose 155g XL Gebinde.png", "marlboro-premium-tobacco-red-dose-70g-m-gebinde": "Marlboro Premium Tobacco Red Dose 70g M Gebinde.png", "marlboro-premium-tobacco-red-pouch-30g-gebinde": "Marlboro Premium Tobacco Red Pouch 30g Gebinde.png", "marlboro-premium-tobacco-schwarze-pouch-50g-gebinde": "Marlboro Premium Tobacco Schwarze Pouch 50g Gebinde.png", "marlboro-premium-tobacco-gold": "marlboro-premium-tobacco-gold.png", "marlboro-premium-tobacco-red": "marlboro-premium-tobacco-red.png", "marlboro-premium-tobacco-zware": "marlboro-premium-tobacco-zware.png", "marlboro-premium-tobacco-gold-m": "marlboro-premium-tobacco-gold-m.png", "marlboro-premium-tobacco-red-m": "marlboro-premium-tobacco-red-m.png", "marlboro-premium-tobacco-red-l": "marlboro-premium-tobacco-red-l.png"}, "other": {"eve-zigaretten-120-10x20er": "Eve Zigaretten 120 (10x20er).png", "parliament-zigaretten-night-blue-10x20er": "Parliament Zigaretten Night Blue (10x20er).png", "pielroja-rolling-tobacco-pouch-30g-gebinde": "Pielroja Rolling Tobacco Pouch 30g Gebinde.png", "pielroja-rolling-tobacco": "pielroja-rolling-tobacco.png"}};
+    const EAN_FILE_MAP = {
+  "chesterfieldbluekingsizefiltercigarillosopbox":"assets/ean/chesterfield/chesterfield-blue-king-size-filter-cigarillos-op-box.png",
+  "chesterfieldbluekingsizefiltercigarillosopboxpack17stk":"assets/ean/chesterfield/Chesterfield Blue King Size Filter Cigarillos OP Box Pack 17 Stk Gebinde.png",
+  "chesterfieldbluekingsizefiltercigarillosopboxpack17stkgebinde":"assets/ean/chesterfield/Chesterfield Blue King Size Filter Cigarillos OP Box Pack 17 Stk Gebinde.png",
+  "chesterfieldblueop2xlbox":"assets/ean/chesterfield/chesterfield-blue-op-2xl-box.png",
+  "chesterfieldblueopbox":"assets/ean/chesterfield/chesterfield-blue-op-box.png",
+  "chesterfieldblueopxlbox":"assets/ean/chesterfield/chesterfield-blue-op-xl-box.png",
+  "chesterfieldoriginalop2xlbox":"assets/ean/chesterfield/chesterfield-original-op-2xl-box.png",
+  "chesterfieldoriginalopbox":"assets/ean/chesterfield/chesterfield-original-op-box.png",
+  "chesterfieldoriginalopxlbox":"assets/ean/chesterfield/chesterfield-original-op-xl-box.png",
+  "chesterfieldredkingsizefiltercigarillosopbox":"assets/ean/chesterfield/chesterfield-red-king-size-filter-cigarillos-op-box.png",
+  "chesterfieldredkingsizefiltercigarillosopboxpack17stk":"assets/ean/chesterfield/Chesterfield Red King Size Filter Cigarillos OP Box Pack 17 Stk Gebinde.png",
+  "chesterfieldredkingsizefiltercigarillosopboxpack17stkgebinde":"assets/ean/chesterfield/Chesterfield Red King Size Filter Cigarillos OP Box Pack 17 Stk Gebinde.png",
+  "chesterfieldunpluggedred":"assets/ean/chesterfield/chesterfield-unplugged-red.png",
+  "chesterfieldunpluggedredpouch30g":"assets/ean/chesterfield/Chesterfield Unplugged Red Pouch 30g Gebinde.png",
+  "chesterfieldunpluggedredpouch30ggebinde":"assets/ean/chesterfield/Chesterfield Unplugged Red Pouch 30g Gebinde.png",
+  "chesterfieldvolumetobaccoredbox135gmega":"assets/ean/chesterfield/Chesterfield Volume Tobacco Red Box 135g Mega.png",
+  "chesterfieldvolumetobaccoredbox255ggiga":"assets/ean/chesterfield/Chesterfield Volume Tobacco Red Box 255g Giga.png",
+  "chesterfieldvolumetobaccoreddose40gm":"assets/ean/chesterfield/Chesterfield Volume Tobacco Red Dose 40g M Gebinde.png",
+  "chesterfieldvolumetobaccoreddose40gmgebinde":"assets/ean/chesterfield/Chesterfield Volume Tobacco Red Dose 40g M Gebinde.png",
+  "chesterfieldvolumetobaccoredgiga":"assets/ean/chesterfield/chesterfield-volume-tobacco-red-giga.png",
+  "chesterfieldvolumetobaccoredm":"assets/ean/chesterfield/chesterfield-volume-tobacco-red-m.png",
+  "chesterfieldvolumetobaccoredmega":"assets/ean/chesterfield/chesterfield-volume-tobacco-red-mega.png",
+  "chesterfieldzigarettenblue5x39er":"assets/ean/chesterfield/Chesterfield Zigaretten Blue (5x39er).png",
+  "chesterfieldzigarettenblue8x25er":"assets/ean/chesterfield/Chesterfield Zigaretten Blue (8x25er).png",
+  "chesterfieldzigarettenblue8x31er":"assets/ean/chesterfield/Chesterfield Zigaretten Blue (8x31er).png",
+  "chesterfieldzigarettenoriginal8x25er":"assets/ean/chesterfield/Chesterfield Zigaretten Original (8x25er).png",
+  "chesterfieldzigarettenoriginal8x31er":"assets/ean/chesterfield/Chesterfield Zigaretten Original (8x31er).png",
+  "evezigaretten12010x20er":"assets/ean/other/Eve Zigaretten 120 (10x20er).png",
+  "iqosilumaikitbreezeblue":"assets/ean/iqos/iqos-ilumai-kit-breeze-blue.png",
+  "iqosilumaionekitmidnightblack":"assets/ean/iqos/iqos-ilumai-one-kit-midnight-black.png",
+  "iqosilumaionekitvividterracotta":"assets/ean/iqos/iqos-ilumai-one-kit-vivid-terracotta.png",
+  "iqosilumakitpebblebeige":"assets/ean/iqos/iqos-iluma-kit-pebble-beige.png",
+  "iqosilumakitpebblegrey":"assets/ean/iqos/iqos-iluma-kit-pebble-grey.png",
+  "lmbluelabelop2xlbox":"assets/ean/lm/l-m-blue-label-op-2xl-box.png",
+  "lmbluelabelopbox":"assets/ean/lm/l-m-blue-label-op-box.png",
+  "lmbluelabelopxlbox":"assets/ean/lm/l-m-blue-label-op-xl-box.png",
+  "lmcigarettetobaccored":"assets/ean/lm/l-m-cigarette-tobacco-red.png",
+  "lmcigarettetobaccoredpouch30g":"assets/ean/lm/LM Cigarette Tobacco Red Pouch 30g Gebinde.png",
+  "lmcigarettetobaccoredpouch30ggebinde":"assets/ean/lm/LM Cigarette Tobacco Red Pouch 30g Gebinde.png",
+  "lmfiltercigarillosbluelabelopbox":"assets/ean/lm/l-m-filter-cigarillos-blue-label-op-box.png",
+  "lmfiltercigarillosbluelabelopboxpack17stk":"assets/ean/lm/LM Filter Cigarillos Blue Label OP Box Pack 17 Stk Gebinde.png",
+  "lmfiltercigarillosbluelabelopboxpack17stkgebinde":"assets/ean/lm/LM Filter Cigarillos Blue Label OP Box Pack 17 Stk Gebinde.png",
+  "lmfiltercigarillosredlabelopbox":"assets/ean/lm/l-m-filter-cigarillos-redlabel-op-box.png",
+  "lmfiltercigarillosredlabelopboxpack17stk":"assets/ean/lm/LM Filter Cigarillos Red Label OP Box Pack 17 Stk Gebinde.png",
+  "lmfiltercigarillosredlabelopboxpack17stkgebinde":"assets/ean/lm/LM Filter Cigarillos Red Label OP Box Pack 17 Stk Gebinde.png",
+  "lmredlabelop2xlbox":"assets/ean/lm/l-m-red-label-op-2xl-box.png",
+  "lmredlabelop4xlbox":"assets/ean/lm/l-m-red-label-op-4xl-box.png",
+  "lmredlabelop7xlbox":"assets/ean/lm/l-m-red-label-op-7xl-box.png",
+  "lmredlabelop9xlbox":"assets/ean/lm/l-m-red-label-op-9xl-box.png",
+  "lmredlabelopbox":"assets/ean/lm/l-m-red-label-op-box.png",
+  "lmredlabelopxlbox":"assets/ean/lm/l-m-red-label-op-xl-box.png",
+  "lmvolumetobaccobluedose39gm":"assets/ean/lm/LM Volume Tobacco Blue Dose 39g M Gebinde.png",
+  "lmvolumetobaccobluedose39gmgebinde":"assets/ean/lm/LM Volume Tobacco Blue Dose 39g M Gebinde.png",
+  "lmvolumetobaccobluem":"assets/ean/lm/l-m-volume-tobacco-blue-m.png",
+  "lmvolumetobaccored":"assets/ean/lm/l-m-volume-tobacco-red.png",
+  "lmvolumetobaccoredbeutel85g":"assets/ean/lm/LM Volume Tobacco Red Beutel 85g.png",
+  "lmvolumetobaccoredbig":"assets/ean/lm/l-m-volume-tobacco-red-big.png",
+  "lmvolumetobaccoredbox129gbig":"assets/ean/lm/LM Volume Tobacco Red Box 129g Big.png",
+  "lmvolumetobaccoredbox185gmega":"assets/ean/lm/LM Volume Tobacco Red Box 185g Mega.png",
+  "lmvolumetobaccoreddose39gm":"assets/ean/lm/LM Volume Tobacco Red Dose 39g M Gebinde.png",
+  "lmvolumetobaccoreddose39gmgebinde":"assets/ean/lm/LM Volume Tobacco Red Dose 39g M Gebinde.png",
+  "lmvolumetobaccoreddose65gl":"assets/ean/lm/LM Volume Tobacco Red Dose 65g L Gebinde.png",
+  "lmvolumetobaccoreddose65glgebinde":"assets/ean/lm/LM Volume Tobacco Red Dose 65g L Gebinde.png",
+  "lmvolumetobaccoredl":"assets/ean/lm/l-m-volume-tobacco-red-l.png",
+  "lmvolumetobaccoredm":"assets/ean/lm/l-m-volume-tobacco-red-m.png",
+  "lmvolumetobaccoredmega":"assets/ean/lm/l-m-volume-tobacco-red-mega.png",
+  "lmzigarettenbluelabel10x20er":"assets/ean/lm/L&M Zigaretten Blue Label (10x20er).png",
+  "lmzigarettenbluelabel5x39er":"assets/ean/lm/L&M Zigaretten Blue Label (5x39er).png",
+  "lmzigarettenbluelabel6x39er":"assets/ean/lm/L&M Zigaretten Blue Label (6x39er).png",
+  "lmzigarettenbluelabel8x20er":"assets/ean/lm/L&M Zigaretten Blue Label (8x20er).png",
+  "lmzigarettenbluelabel8x25er":"assets/ean/lm/L&M Zigaretten Blue Label (8x25er).png",
+  "lmzigarettenbluelabel8x31er":"assets/ean/lm/L&M Zigaretten Blue Label (8x31er).png",
+  "lmzigarettenredlabel3x60er":"assets/ean/lm/L&M Zigaretten Red Label (3x60er).png",
+  "lmzigarettenredlabel8x25er":"assets/ean/lm/L&M Zigaretten Red Label (8x25er).png",
+  "lmzigarettenredlabel8x31er":"assets/ean/lm/L&M Zigaretten Red Label (8x31er).png",
+  "lmzigarettenredlabellong10x20er":"assets/ean/lm/L&M Zigaretten Red Label Long (10x20er).png",
+  "lmzigarettensimplyblue10x20er":"assets/ean/lm/L&M Zigaretten Simply Blue (10x20er).png",
+  "marlborocraftedbox230gmega":"assets/ean/marlboro_tabak/Marlboro Crafted Box 230g Mega.png",
+  "marlborocraftedgoldop2xlbox":"assets/ean/marlboro/marlboro-crafted-gold-op-2xl-box.png",
+  "marlborocraftedgoldop7xlbox":"assets/ean/marlboro/marlboro-crafted-gold-op-7xl-box.png",
+  "marlborocraftedgoldopbox":"assets/ean/marlboro/marlboro-crafted-gold-op-box.png",
+  "marlborocraftedredop2xlbox":"assets/ean/marlboro/marlboro-crafted-red-op-2xl-box.png",
+  "marlborocraftedredop7xlbox":"assets/ean/marlboro/marlboro-crafted-red-op-7xl-box.png",
+  "marlborocraftedredopbox":"assets/ean/marlboro/marlboro-crafted-red-op-box.png",
+  "marlborogoldop2xlbox":"assets/ean/marlboro/marlboro-gold-op-2xl-box.png",
+  "marlborogoldop4xlbox":"assets/ean/marlboro/marlboro-gold-op-4xl-box.png",
+  "marlborogoldop7xlbox":"assets/ean/marlboro/marlboro-gold-op-7xl-box.png",
+  "marlborogoldopbox":"assets/ean/marlboro/marlboro-gold-op-box.png",
+  "marlborogoldopxlbox":"assets/ean/marlboro/marlboro-gold-op-xl-box.png",
+  "marlborogoldsoftlabelopsoft":"assets/ean/marlboro/marlboro-gold-soft-label-op-soft.png",
+  "marlboromixop2xlbox":"assets/ean/marlboro/marlboro-mix-op-2xl-box.png",
+  "marlboromixopbox":"assets/ean/marlboro/marlboro-mix-op-box.png",
+  "marlboromixopxlbox":"assets/ean/marlboro/marlboro-mix-op-xl-box.png",
+  "marlboropremiumtobaccogold":"assets/ean/marlboro_tabak/marlboro-premium-tobacco-gold.png",
+  "marlboropremiumtobaccogolddose70gm":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Gold Dose 70g M Gebinde.png",
+  "marlboropremiumtobaccogolddose70gmgebinde":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Gold Dose 70g M Gebinde.png",
+  "marlboropremiumtobaccogoldm":"assets/ean/marlboro_tabak/marlboro-premium-tobacco-gold-m.png",
+  "marlboropremiumtobaccogoldpouch30g":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Gold Pouch 30g Gebinde.png",
+  "marlboropremiumtobaccogoldpouch30ggebinde":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Gold Pouch 30g Gebinde.png",
+  "marlboropremiumtobaccored":"assets/ean/marlboro_tabak/marlboro-premium-tobacco-red.png",
+  "marlboropremiumtobaccoreddose103gl":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Red Dose 103g L Gebinde.png",
+  "marlboropremiumtobaccoreddose103glgebinde":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Red Dose 103g L Gebinde.png",
+  "marlboropremiumtobaccoreddose155gxl":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Red Dose 155g XL Gebinde.png",
+  "marlboropremiumtobaccoreddose155gxlgebinde":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Red Dose 155g XL Gebinde.png",
+  "marlboropremiumtobaccoreddose70gm":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Red Dose 70g M Gebinde.png",
+  "marlboropremiumtobaccoreddose70gmgebinde":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Red Dose 70g M Gebinde.png",
+  "marlboropremiumtobaccoredl":"assets/ean/marlboro_tabak/marlboro-premium-tobacco-red-l.png",
+  "marlboropremiumtobaccoredm":"assets/ean/marlboro_tabak/marlboro-premium-tobacco-red-m.png",
+  "marlboropremiumtobaccoredpouch30g":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Red Pouch 30g Gebinde.png",
+  "marlboropremiumtobaccoredpouch30ggebinde":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Red Pouch 30g Gebinde.png",
+  "marlboropremiumtobaccoschwarzepouch50g":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Schwarze Pouch 50g Gebinde.png",
+  "marlboropremiumtobaccoschwarzepouch50ggebinde":"assets/ean/marlboro_tabak/Marlboro Premium Tobacco Schwarze Pouch 50g Gebinde.png",
+  "marlboropremiumtobaccozware":"assets/ean/marlboro_tabak/marlboro-premium-tobacco-zware.png",
+  "marlbororedlongopbox":"assets/ean/marlboro/MARLBORO RED LONG OP-BOX.png",
+  "marlbororedop2xlbox":"assets/ean/marlboro/marlboro-red-op-2xl-box.png",
+  "marlbororedop4xlbox":"assets/ean/marlboro/marlboro-red-op-4xl-box.png",
+  "marlbororedop7xlbox":"assets/ean/marlboro/marlboro-red-op-7xl-box.png",
+  "marlbororedop9xlbox":"assets/ean/marlboro/MARLBORO RED OP 9XL-BOX.png",
+  "marlbororedopbox":"assets/ean/marlboro/marlboro-red-op-box.png",
+  "marlbororedopxlbox":"assets/ean/marlboro/MARLBORO RED OP XL-BOX.png",
+  "marlbororedsoftlabelopsoft":"assets/ean/marlboro/marlboro-red-soft-label-op-soft.png",
+  "marlborozigarettencraftedgold10x20er":"assets/ean/marlboro/Marlboro Zigaretten Crafted Gold (10x20er).png",
+  "marlborozigarettencraftedgold2xl8x27er":"assets/ean/marlboro/Marlboro Zigaretten Crafted Gold 2XL (8x27er).png",
+  "marlborozigarettencraftedgold60er":"assets/ean/marlboro/Marlboro Zigaretten Crafted Gold (60er).png",
+  "marlborozigarettencraftedred10x20er":"assets/ean/marlboro/Marlboro Zigaretten Crafted Red (10x20er).png",
+  "marlborozigarettencraftedred2xl8x27er":"assets/ean/marlboro/Marlboro Zigaretten Crafted Red 2XL (8x27er).png",
+  "marlborozigarettencraftedred60er":"assets/ean/marlboro/Marlboro Zigaretten Crafted Red (60er).png",
+  "marlborozigarettengold10x20er":"assets/ean/marlboro/Marlboro Zigaretten Gold (10x20er).png",
+  "marlborozigarettengold3x52er":"assets/ean/marlboro/Marlboro Zigaretten Gold (3x52er).png",
+  "marlborozigarettengold5x39er":"assets/ean/marlboro/Marlboro Zigaretten Gold (5x39er).png",
+  "marlborozigarettengold8x23er":"assets/ean/marlboro/Marlboro Zigaretten Gold (8x23er).png",
+  "marlborozigarettengoldlong10x20er":"assets/ean/marlboro/Marlboro Zigaretten Gold Long (10x20er).png",
+  "marlborozigarettengoldsoftlabel10x20er":"assets/ean/marlboro/Marlboro Zigaretten Gold Soft Label (10x20er).png",
+  "marlborozigarettenred8x20er":"assets/ean/marlboro/Marlboro Zigaretten Red (8x20er).png",
+  "marlborozigarettenred8x25er":"assets/ean/marlboro/Marlboro Zigaretten Red (8x25er).png",
+  "marlborozigarettensilverblue10x20er":"assets/ean/marlboro/Marlboro Zigaretten Silver Blue (10x20er).png",
+  "marlborozigarettensimplyblue10x20er":"assets/ean/marlboro/Marlboro Zigaretten Simply Blue (10x20er).png",
+  "marlborozigarettensimplyred10x20er":"assets/ean/marlboro/Marlboro Zigaretten Simply Red (10x20er).png",
+  "marlborozigarettenwhite10x20er":"assets/ean/marlboro/Marlboro Zigaretten White (10x20er).png",
+  "marlborozigarettenwhite5x39er":"assets/ean/marlboro/Marlboro Zigaretten White (5x39er).png",
+  "marlborozigarettenwhite8x25er":"assets/ean/marlboro/Marlboro Zigaretten White (8x25er).png",
+  "marlborozigarettenwhite8x25er2":"assets/ean/marlboro/Marlboro Zigaretten White (8x25er) (2).png",
+  "marlborozigarettenwhite8x31er":"assets/ean/marlboro/Marlboro Zigaretten White (8x31er).png",
+  "parliamentzigarettennightblue10x20er":"assets/ean/other/Parliament Zigaretten Night Blue (10x20er).png",
+  "pielrojarollingtobacco":"assets/ean/other/pielroja-rolling-tobacco.png",
+  "pielrojarollingtobaccopouch30g":"assets/ean/other/Pielroja Rolling Tobacco Pouch 30g Gebinde.png",
+  "pielrojarollingtobaccopouch30ggebinde":"assets/ean/other/Pielroja Rolling Tobacco Pouch 30g Gebinde.png",
+  "tereaamberselection":"assets/ean/terea/terea-amber-selection.png",
+  "tereabronzeselection":"assets/ean/terea/terea-bronze-selection.png",
+  "terearussetselection":"assets/ean/terea/terea-russet-selection.png",
+  "tereasiennaselection":"assets/ean/terea/terea-sienna-selection.png",
+  "tereasilverselection":"assets/ean/terea/terea-silver-selection.png",
+  "tereateakselection":"assets/ean/terea/terea-teak-selection.png",
+  "tereaturquoiseselection":"assets/ean/terea/terea-turquoise-selection.png",
+  "tereawarmfuseselection":"assets/ean/terea/terea-warm-fuse-selection.png",
+  "tereayellowgreenselection":"assets/ean/terea/terea-yellow-green-selection.png",
+  "tereayellowselection":"assets/ean/terea/terea-yellow-selection.png",
+  "veevnowultrablueraspberry":"assets/ean/veev/veev-now-ultra-blue-raspberry.png",
+  "veevnowultraclassicmint":"assets/ean/veev/veev-now-ultra-classic-mint.png",
+  "veevnowultrafruitkiwiguavaveev":"assets/ean/veev/veev-now-ultra-fruit-kiwi-guava-veev.png",
+  "veevnowultragrape":"assets/ean/veev/veev-now-ultra-grape.png",
+  "veevnowultramango":"assets/ean/veev/veev-now-ultra-mango.png",
+  "veevnowultrasourapple":"assets/ean/veev/veev-now-ultra-sour-apple.png",
+  "veevnowultrastrawberry":"assets/ean/veev/veev-now-ultra-strawberry.png",
+  "veevnowultrawatermelon":"assets/ean/veev/veev-now-ultra-watermelon.png",
+  "veevonekitfreshygreen":"assets/ean/veev/veev-one-kit-freshy-green.png",
+  "veevonekitsilkygrey":"assets/ean/veev/veev-one-kit-silky-grey.png",
+  "veevonekitvelvetblack":"assets/ean/veev/veev-one-kit-velvet-black.png",
+  "veevonepodsbalancedtobacco":"assets/ean/veev/veev-one-pods-balanced-tobacco.png",
+  "veevonepodsblueberry":"assets/ean/veev/veev-one-pods-blueberry.png",
+  "veevonepodsbluemint":"assets/ean/veev/veev-one-pods-blue-mint.png",
+  "veevonepodsblueraspberry":"assets/ean/veev/veev-one-pods-blue-raspberry.png",
+  "veevonepodscherry":"assets/ean/veev/veev-one-pods-cherry.png",
+  "veevonepodsclassictobacco":"assets/ean/veev/veev-one-pods-classic-tobacco.png",
+  "veevonepodsgrape":"assets/ean/veev/veev-one-pods-grape.png",
+  "veevonepodsgreenmint":"assets/ean/veev/veev-one-pods-green-mint.png",
+  "veevonepodsicemint":"assets/ean/veev/veev-one-pods-ice-mint.png",
+  "veevonepodsmango":"assets/ean/veev/veev-one-pods-mango.png",
+  "veevonepodspassionfruitkiwiguava":"assets/ean/veev/veev-one-pods-passion-fruit-kiwi-guava.png",
+  "veevonepodspeach":"assets/ean/veev/veev-one-pods-peach.png",
+  "veevonepodssourapple":"assets/ean/veev/veev-one-pods-sour-apple.png",
+  "veevonepodsstrawberry":"assets/ean/veev/veev-one-pods-strawberry.png",
+  "veevonepodswatermelon":"assets/ean/veev/veev-one-pods-watermelon.png"
+};
+function nKey(s){
+  return (s||"").toLowerCase().replace(/[^a-z0-9]+/g,"");
+}
+function eanSrc(p){
+  if(!p) return "";
+  const brand = nKey(p.brand);
+  const name = nKey(p.name);
+  const content = nKey(p.content);
+  const candidates = [
+    brand+name+content,
+    name+content,
+    brand+name,
+    name
+  ].filter(Boolean);
 
-
-    function eanSrc(p){
-    // Ordner-Logik + Fallback:
-    // - L&M nutzt Ordner "lm"
-    // - Marlboro Tabak nutzt Ordner "marlboro_tabak"
-    // - Unbekannte Marken => "other"
-    const b = (p.brand || "other");
-    let folder = slugify(b);
-    if(folder === "l-m") folder = "lm";
-
-    const sec = (p.section || "").toLowerCase();
-    const nm  = (p.name || "").toLowerCase();
-    if(folder === "marlboro" && (sec === "tabak" || nm.includes("tobacco") || nm.includes("tabak"))){
-      folder = "marlboro_tabak";
-    }
-
-    const KNOWN = ["iqos","veev","terea","chesterfield","lm","marlboro","marlboro_tabak","other"];
-    if(!KNOWN.includes(folder)) folder = "other";
-
-    const slug = slugify(p.name || "");
-    const mapped = (EAN_FILE_MAP[folder] && EAN_FILE_MAP[folder][slug]) ? EAN_FILE_MAP[folder][slug] : (slug + ".png");
-    return `assets/ean/${folder}/${mapped}`;
+  for(const c of candidates){
+    if(EAN_FILE_MAP[c]) return EAN_FILE_MAP[c];
+    const c2 = c.replace(/gebinde/g,"");
+    if(EAN_FILE_MAP[c2]) return EAN_FILE_MAP[c2];
   }
+
+  // Fuzzy fallback: best score by containment
+  let bestPath = "";
+  let bestScore = 0;
+  for(const [k,path] of Object.entries(EAN_FILE_MAP)){
+    let score = 0;
+    if(name && k.includes(name)) score += 100 + name.length;
+    if(brand && k.includes(brand)) score += 50 + brand.length;
+    if(content && k.includes(content)) score += 20 + content.length;
+    if(score > bestScore){
+      bestScore = score;
+      bestPath = path;
+    }
+  }
+  return bestScore >= 100 ? bestPath : "";
+}
+
+
+    
 
 
 
